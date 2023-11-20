@@ -1,0 +1,9 @@
+.test {
+    display: flex;
+    justify-content: center;
+    background-color: aqua
+}
+
+.test__header {
+    color: rgb(242, 0, 0);
+}
