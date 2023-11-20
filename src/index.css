@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "StratosSkyeng";
+    src: url("./fonts/StratosLCWeb-Regular.woff2") format("woff2"),
+        url("./fonts/StratosLCWeb-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    width: 400;
+}
