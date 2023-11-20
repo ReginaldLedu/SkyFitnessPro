@@ -107,7 +107,7 @@ body {
     width: 360px;
     height: 480px;
     border-radius: 30px;
-    box-shadow: 10px -10px 16px 0px #0000001A;
+    box-shadow: 0px 0px 10px 10px #0000001A;
     background-image: url(../../imgAl/yoga.png);
     background-size: cover;
     box-sizing: content-box;
@@ -117,7 +117,7 @@ body {
     width: 360px;
     height: 480px;
     border-radius: 30px;
-    box-shadow: 10px -10px 16px 0px #0000001A;
+    box-shadow: 0px 0px 10px 10px #0000001A;
     background-size: cover;
     background-image: url(../../imgAl/strech.png);
 }
@@ -126,7 +126,7 @@ body {
     width: 360px;
     height: 480px;
     border-radius: 30px;
-    box-shadow: 10px -10px 16px 0px #0000001A;
+    box-shadow: 0px 0px 10px 10px #0000001A;
     background-size: cover;
     background-image: url(../../imgAl/bflex.png);
 }
