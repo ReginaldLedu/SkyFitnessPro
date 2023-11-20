@@ -1,0 +1,158 @@
+.descriptionContent {
+    font-family: "StratosSkyeng", sans-serif;
+    padding-left: calc(50% - 580px);
+    padding-right: calc(50% - 580px);
+    padding-bottom: 140px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.header__logo {
+    height: 35px;
+    width: 220px;
+    background-image: url(../../img/logo.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.header__button {
+    outline: none;
+    border: none;
+    border-radius: 5rem;
+    padding: 5px 1rem 9px;
+    min-width: auto;
+    font-family: inherit;
+    font-size: 1.25rem;
+    color: rgb(255, 255, 255);
+    background-color: rgb(20, 13, 64);
+    cursor: pointer;
+}
+
+.description {
+    margin-top: 75px;
+}
+
+.description__logo {
+    height: 310px;
+    width: 1160px;
+    background-image: url(../../img/logo__yoga.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.description__title {
+    padding-top: 35px;
+    margin-left: 30px;
+    font-size: 64px;
+    font-weight: 300;
+}
+
+.description__forYou {
+    margin-top: 75px;
+}
+
+.description__header {
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.description__elseBox {
+    display: flex;
+    margin-top: 34px;
+    gap: 87px;
+}
+
+.description__else {
+    display: flex;
+    gap: 24px;
+}
+
+.description__number {
+    border-radius: 34px;
+    background: rgb(199, 233, 87);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 67px;
+    height: 67px;
+    font-size: 2rem;
+}
+
+.description__text {
+    width: 244px;
+    font-size: 24px;
+}
+
+.description__textEnd {
+    width: 218px;
+}
+
+.description__direction {
+    margin-top: 75px;
+}
+
+.description__directionHeader {
+    margin-bottom: 22px;
+    font-size: 40px;
+    font-weight: 300;
+}
+
+.description__directionBox {
+    display: flex;
+    gap: 240px;
+}
+
+.description__directionList {
+    list-style: none;
+}
+
+.description__list {
+    font-size: 24px;
+    line-height: 32px;
+}
+
+.description__list::before {
+    content: "•";
+    float: left;
+    padding: 0 15px 0 15px;
+}
+
+.description__course {
+    margin-top: 75px;
+    font-size: 24px;
+}
+
+.footer {
+    height: 300px;
+    background-color: #f9ebff;
+    margin-top: 75px;
+    border-radius: 30px;
+    background-image: url(../../img/phone.png);
+    background-repeat: no-repeat;
+    background-position: right;
+}
+
+.footer__text {
+    font-size: 32px;
+    padding-top: 46px;
+    margin-left: 52px;
+}
+
+.footer__button {
+    margin-left: 52px;
+    margin-top: 35px;
+    border: none;
+    border-radius: 46px;
+    padding: 12px 25px 12px;
+    font-size: 18px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(88, 14, 162);
+    cursor: pointer;
+}
