@@ -4,6 +4,12 @@
     box-sizing: border-box;
 }
 
+button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
 @font-face {
     font-family: "StratosSkyeng";
     src: url("./fonts/StratosLCWeb-Regular.woff2") format("woff2"),

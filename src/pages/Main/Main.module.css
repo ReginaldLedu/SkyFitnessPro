@@ -1,123 +1,143 @@
 .container {
-    font-family: "StratosSkyeng", sans-serif;
-    height: 1448px;
-    padding-top: 30px;
-    background-color: #271a58;
-    padding-left: calc(50% - 580px);
-    padding-right: calc(50% - 580px);
+  font-family: "StratosSkyeng", sans-serif;
+  padding-top: 30px;
+  background-color: #271a58;
+  padding-left: calc(50% - 580px);
+  padding-right: calc(50% - 580px);
+}
+
+.sticker {
+  position: absolute;
+  top: 70px;
+  left: 980px;
+  rotate: -15%;
+}
+
+.logo__container {
+  height: 35px;
+  width: 220px;
+  background-image: url(../../img/logo__white.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.logo__text {
+  font-size: 30px;
+  color: #ffffff;
+}
+
+.top__row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+}
+
+.login__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 24px;
+  font-weight: 400;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #140d40;
+  border-radius: 46px;
+  width: 77px;
+  height: 36px;
+
+  &:hover {
+    background-color: #2d1f79;
   }
-  .sticker {
-    position: absolute;
-    top: 70px;
-    left: 980px;
-    rotate: -15%;
+
+  &:active {
+    background-color: #3b29a1;
   }
-  .logo__container {
-    display: flex;
-    gap: 10px;
-    align-items: baseline;
+}
+
+.small__title {
+  line-height: 23px;
+  font-weight: 400;
+  font-size: 20px;
+  color: #ffffff;
+  opacity: 50%;
+  letter-spacing: -0.05px;
+  margin-top: 35px;
+}
+
+.big__title {
+  line-height: 55px;
+  font-weight: 400;
+  font-size: 60px;
+  color: #f4f4ff;
+  letter-spacing: -1.17px;
+  margin-top: 17px;
+  width: 820px;
+  height: 110px;
+}
+
+.cards__container {
+  margin-top: 52px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 37px;
+}
+
+.card__box {
+  width: 360px;
+  height: 480px;
+  background-color: #f4f4ff;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+}
+
+.card__img_yoga {
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  border-image: url(../../img/yoga.png);
+}
+
+.card__img_stretch {
+  position: absolute;
+  top: -25px;
+  left: -25px;
+}
+
+.card__img_bodyFlex {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+}
+
+.bottom__container {
+  margin-top: 37px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom__button {
+  width: 147px;
+  height: 48px;
+  background-color: #c7e957;
+  border-radius: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: -0.1px;
+
+  &:hover {
+    background-color: #daf289;
   }
-  .logo__text {
-    font-size: 30px;
-    color: #ffffff;
+
+  &:active {
+    background-color: #ebffab;
   }
-  .top__row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: relative;
-  }
-  .login__button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    line-height: 24px;
-    font-weight: 400;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #140d40;
-    border-radius: 46px;
-    width: 77px;
-    height: 36px;
-    &:hover {
-      background-color: #2d1f79;
-    }
-    &:active {
-      background-color: #3b29a1;
-    }
-  }
-  .small__title {
-    line-height: 23px;
-    font-weight: 400;
-    font-size: 20px;
-    color: #ffffff;
-    opacity: 50%;
-    letter-spacing: -0.05px;
-    margin-top: 35px;
-  }
-  .big__title {
-    line-height: 55px;
-    font-weight: 400;
-    font-size: 60px;
-    color: #f4f4ff;
-    letter-spacing: -1.17px;
-    margin-top: 17px;
-    width: 820px;
-    height: 110px;
-  }
-  .cards__container {
-    margin-top: 52px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 37px;
-  }
-  .card__box {
-    width: 360px;
-    height: 480px;
-    background-color: #f4f4ff;
-    border-radius: 30px;
-    overflow: hidden;
-    position: relative;
-  }
-  .card__img_yoga {
-    position: absolute;
-    top: -25px;
-    left: -25px;
-  }
-  .card__img_stretch {
-    position: absolute;
-    top: -25px;
-    left: -25px;
-  }
-  .card__img_bodyflex {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-  }
-  .bottom__container {
-    margin-top: 37px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .bottom__button {
-    width: 147px;
-    height: 48px;
-    background-color: #c7e957;
-    border-radius: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000000;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 32px;
-    letter-spacing: -0.1px;
-    &:hover {
-      background-color: #daf289;
-    }
-    &:active {
-      background-color: #ebffab;
-    }
-  }
-  
+}

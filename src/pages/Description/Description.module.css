@@ -14,15 +14,13 @@
 .header__logo {
     height: 35px;
     width: 220px;
-    background-image: url(../../img/logo.png);
+    background-image: url(../../img/logo__black.png);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 
 .header__button {
-    outline: none;
-    border: none;
     border-radius: 5rem;
     padding: 5px 1rem 9px;
     min-width: auto;
@@ -30,7 +28,6 @@
     font-size: 1.25rem;
     color: rgb(255, 255, 255);
     background-color: rgb(20, 13, 64);
-    cursor: pointer;
 }
 
 .description {
@@ -148,11 +145,9 @@
 .footer__button {
     margin-left: 52px;
     margin-top: 35px;
-    border: none;
     border-radius: 46px;
     padding: 12px 25px 12px;
     font-size: 18px;
     color: rgb(255, 255, 255);
     background-color: rgb(88, 14, 162);
-    cursor: pointer;
 }

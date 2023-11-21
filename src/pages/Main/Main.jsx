@@ -1,62 +1,91 @@
+import { Link } from "react-router-dom";
+import sticker from "../../img/sticker.svg";
+import yoga from "../../img/yoga.png";
+import stretch from "../../img/stretch.png";
+import danceFitness from "../../img/danceFitness.svg";
+import stepAerobics from "../../img/stepAerobics.svg";
+import bodyFlex from "../../img/bodyFlex.png";
 import S from "./Main.module.css";
 
-
 function Main() {
-  return (    
+  const enter = () => {};
+
+  const card = () => {};
+
+  const scroll = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
+
+  return (
     <div className={S.container}>
-    <div className={S.top__row}>
-      <div className={S.logo__container}>
-        <div className={S.logo}>
-          <img alt="logo" src="./imgMarat/Logo.svg" />
+      <div className={S.top__row}>
+        <Link to="/" className={S.logo__container} />
+        <button onClick={enter} type="button" className={S.login__button}>
+          Войти
+        </button>
+        <div className={S.sticker}>
+          <img alt="sticker" src={sticker} />
         </div>
-        <div className={S.logo__text}>SkyFitnessPro</div>
       </div>
-      <div className={S.login__button}>Войти</div>
-      <div className={S.sticker}>
-        <img alt="sticker" src="./imgMarat/sticker.svg" />
+      <div className={S.small__title}>Онлайн-тренировки для занятий дома</div>
+      <div className={S.big__title}>
+        Начните заниматься спортом и улучшите качество жизни
+      </div>
+      <div className={S.cards__container}>
+        <button
+          onClick={() => card("yoga")}
+          type="button"
+          className={S.card__box}
+        >
+          <img alt="yoga" className={S.card__img_yoga} src={yoga} />
+        </button>
+        <button
+          onClick={() => card("stretch")}
+          type="button"
+          className={S.card__box}
+        >
+          <img alt="stretch" className={S.card__img_stretch} src={stretch} />
+        </button>
+        <button
+          onClick={() => card("danceFitness")}
+          type="button"
+          className={S.card__box}
+        >
+          <img
+            alt="danceFitness"
+            className={S.card__img_danceFitness}
+            src={danceFitness}
+          />
+        </button>
+        <button
+          onClick={() => card("stepAerobics")}
+          type="button"
+          className={S.card__box}
+        >
+          <img
+            alt="stepAerobics"
+            className={S.card__img_stepAerobics}
+            src={stepAerobics}
+          />
+        </button>
+        <button
+          onClick={() => card("bodyFlex")}
+          type="button"
+          className={S.card__box}
+        >
+          <img alt="bodyFlex" className={S.card__img_bodyFlex} src={bodyFlex} />
+        </button>
+      </div>
+      <div className={S.bottom__container}>
+        <button onClick={scroll} type="button" className={S.bottom__button}>
+          Наверх {String.fromCodePoint(8593)}
+        </button>
       </div>
     </div>
-    <div className={S.small__title}>0нлайн-тренировки для занятий дома</div>
-    <div className={S.big__title}>
-      Начните заниматься спортом и улучшите качество жизни
-    </div>
-    <div className={S.cards__container}>
-      <div className={S.card__box}>
-        <img alt="yoga" className={S.card__img_yoga} src="./imgMarat/yoga.png" />
-      </div>
-      <div className={S.card__box}>
-        <img
-          alt="stretch"
-          className={S.card__img_stretch}
-          src="./imgMarat/stretch.png"
-        />
-      </div>
-      <div className={S.card__box}>
-        <img
-          alt="dancefitness"
-          className={S.card__img_dancefitness}
-          src="./imgMarat/dancefitness.svg"
-        />
-      </div>
-      <div className={S.card__box}>
-        <img
-          alt="stepaerobika"
-          className={S.card__img_stepaerobika}
-          src="./imgMarat/stepaerobika.svg"
-        />
-      </div>
-      <div className={S.card__box}>
-        <img
-          alt="bodyflex"
-          className={S.card__img_bodyflex}
-          src="./imgMarat/bodyflex.png"
-        />
-      </div>
-    </div>
-    <div className={S.bottom__container}>
-      <div className={S.bottom__button}>Наверх {String.fromCodePoint(8593)}</div>
-    </div>
-  </div>
   );
 }
 
