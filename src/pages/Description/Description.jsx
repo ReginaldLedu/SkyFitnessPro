@@ -2,11 +2,15 @@ import { Link } from "react-router-dom";
 import S from "./Description.module.css";
 
 function Description() {
+  const enter = () => {};
+
+  const signUp = () => {};
+
   return (
     <div className={S.descriptionContent}>
       <header className={S.header}>
         <Link to="/" className={S.header__logo} />
-        <button type="button" className={S.header__button}>
+        <button onClick={enter} type="button" className={S.header__button}>
           Войти
         </button>
       </header>
@@ -66,7 +70,7 @@ function Description() {
           с вами, поможем с выбором направления и тренера, <br />с которым
           тренировки принесут здоровье и радость!
         </p>
-        <button type="button" className={S.footer__button}>
+        <button onClick={signUp} type="button" className={S.footer__button}>
           Записаться на тренировку
         </button>
       </footer>
