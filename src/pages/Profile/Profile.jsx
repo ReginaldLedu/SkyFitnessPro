@@ -1,6 +1,8 @@
+/* eslint-disable import/named */
 import S from "./Profile.module.css";
 import logo from "../../imgAl/logo.png";
 import arrow from "../../imgAl/arrow.png";
+import  NewPwd  from "./NewPwd";
 
 function Profile() {
   return (
@@ -12,6 +14,7 @@ function Profile() {
           <div className={S.user_block__name}>Сергей</div>
           <img className={S.user_block__arrow} src={arrow} alt="arrow" />
         </div>
+        <NewPwd />
       </header>
       <div className={S.profile_block}>
         <p className={S.profile_block__header}>Мой профиль</p>
