@@ -9,6 +9,15 @@ function MyProgress() {
     dispatch(testred("test2"));
   };
 
+   const completeProgressSwitcher = useSelector(
+    (state) => state.myProgressToolkit.initialState,
+  );
+
+  const submitProgressSwitch = () => {
+    dispatch(backToInitial());
+    console.log(completeProgressSwitcher);
+  };
+  
   return (
     <section className={styles.myProgress}>
       <div className={styles.myProgress__wrapper}>
@@ -44,7 +53,7 @@ function MyProgress() {
           />
         </div>
         <button
-          onClick={test}
+         onClick={submitProgressSwitch}
           type="button"
           className={styles.myProgress__submit}
         >
