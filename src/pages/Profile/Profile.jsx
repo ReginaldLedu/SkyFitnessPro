@@ -10,7 +10,7 @@ import SelectWorkout from "./SelectWorkout";
 function Profile() {
   const [isNpwOpen, setIsNpwOpen] = useState(false);
   const [isNlogOpen, setIsNlogOpen] = useState(false);
-
+  const [isTrainingOpen, setIsTrainingOpen] = useState(false);
   return (
     <div className={S.profile_page}>
       <header className={S.header}>
@@ -20,7 +20,7 @@ function Profile() {
           <div className={S.user_block__name}>Сергей</div>
           <img className={S.user_block__arrow} src={arrow} alt="arrow" />
         </div>
-        <SelectWorkout />
+        {isTrainingOpen && <SelectWorkout />}
         {isNpwOpen && <NewPwd />}
         {isNlogOpen && <NewLogin />}
       </header>
@@ -49,7 +49,11 @@ function Profile() {
           <div className={S.mycourses__items}>
             <div className={S.mycourses__item_yoga}>
               <p className={S.item_text}>Йога</p>
-              <button className={S.item_button} type="button">
+              <button
+                className={S.item_button}
+                type="button"
+                onClick={() => setIsTrainingOpen(!isTrainingOpen)}
+              >
                 Перейти →
               </button>
             </div>
