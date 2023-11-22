@@ -1,18 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
 import styles from "./myProgress.module.css";
-import { backToInitial } from "../../store/reducers/myProgressReducer";
 
 function MyProgress() {
-  const dispatch = useDispatch();
-  const completeProgressSwitcher = useSelector(
-    (state) => state.myProgressToolkit.initialState,
-  );
-
-  const submitProgressSwitch = () => {
-    dispatch(backToInitial());
-    console.log(completeProgressSwitcher);
-  };
-
   return (
     <section className={styles.myProgress}>
       <div className={styles.myProgress__wrapper}>
@@ -47,11 +35,7 @@ function MyProgress() {
             placeholder="Введите значение"
           />
         </div>
-        <button
-          type="button"
-          className={styles.myProgress__submit}
-          onClick={submitProgressSwitch}
-        >
+        <button type="button" className={styles.myProgress__submit}>
           Отправить
         </button>
       </div>
