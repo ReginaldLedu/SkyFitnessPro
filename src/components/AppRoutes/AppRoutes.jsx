@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+// import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import Main from "../../pages/Main/Main";
 import Login from "../../pages/Login/Login";
 import Register from "../../pages/Register/Register";
@@ -15,10 +15,10 @@ function AppRoutes() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/description" element={<Description />} />
-      <Route element={<ProtectedRoute />}>
+      {/* <Route element={<ProtectedRoute />}> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/workout" element={<Workout />} />
-      </Route>
+      {/* </Route> */}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 import S from "./Description.module.css";
 
 function Description() {
+
   const enter = () => {};
 
   const signUp = () => {};
+
 
   return (
     <div className={S.descriptionContent}>
