@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  submitProgress,
+  backToInitial,
+} from "../../store/reducers/myProgressReducer";
+
 import styles from "./Workout.module.css";
 import MyProgress from "../../components/Workout progress/myProgress";
 
 function Workout() {
-  const [myProgress, setMyProgress] = useState(false);
-  const writeMyProgress = () => {
-    setMyProgress(true);
-  };
+  const dispatch = useDispatch();
+  const completeProgressSwitcher = useSelector(
+    (state) => state.myProgressToolkit.initialState,
+  );
 
+  const writeMyProgress = () => {
+    if (completeProgressSwitcher === false) {
+      dispatch(submitProgress());
+    } else {
+      dispatch(backToInitial());
+    }
+  };
   return (
     <>
-      {myProgress === false ? " " : <div className={styles.cover} />}
+      {completeProgressSwitcher === false ? (
+        " "
+      ) : (
+        <div className={styles.cover} />
+      )}
       <header>
         <div className={styles.header__wrapper}>
           <div className={styles.header__logo}>
@@ -38,7 +54,7 @@ function Workout() {
             allowfullscreen
           />
         </div>
-        {myProgress === false ? " " : <MyProgress />}
+        {completeProgressSwitcher === false ? " " : <MyProgress />}
         <section className={styles["workout-authorized__info"]}>
           <div className={styles["workout-authorized__exercises"]}>
             <h3 className={styles["workout-authorized__exercises-title"]}>
