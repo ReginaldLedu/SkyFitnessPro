@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import sticker from "../../img/sticker.svg";
-import yoga from "../../img/yoga.png";
-import stretch from "../../img/stretch.png";
-import danceFitness from "../../img/danceFitness.svg";
-import stepAerobics from "../../img/stepAerobics.svg";
-import bodyFlex from "../../img/bodyFlex.png";
+import sticker from "../../img/main/sticker.svg";
+import yoga from "../../img/main/yoga.png";
+import stretch from "../../img/main/stretch.png";
+import danceFitness from "../../img/main/danceFitness.svg";
+import stepAerobics from "../../img/main/stepAerobics.svg";
+import bodyFlex from "../../img/main/bodyFlex.png";
 import S from "./Main.module.css";
 
 function Main() {

@@ -37,7 +37,7 @@
 .description__logo {
     height: 310px;
     width: 1160px;
-    background-image: url(../../img/logo__yoga.jpg);
+    background-image: url(../../img/description/logo__yoga.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -131,7 +131,7 @@
     background-color: #f9ebff;
     margin-top: 75px;
     border-radius: 30px;
-    background-image: url(../../img/phone.png);
+    background-image: url(../../img/description/phone.png);
     background-repeat: no-repeat;
     background-position: right;
 }

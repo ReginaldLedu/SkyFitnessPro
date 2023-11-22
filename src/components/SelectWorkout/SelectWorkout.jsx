@@ -1,5 +1,5 @@
 import S from "./SelectWorkout.module.css";
-import added from "../../imgAl/added.svg";
+import added from "../../img/profile/added.svg";
 
 function SelectWorkout() {
   return (
