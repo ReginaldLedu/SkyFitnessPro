@@ -1,6 +1,14 @@
+import { useDispatch } from "react-redux";
 import styles from "./myProgress.module.css";
+import { testred } from "../../store/reducers/myProgressReducer";
 
 function MyProgress() {
+  const dispatch = useDispatch();
+
+  const test = () => {
+    dispatch(testred("test2"));
+  };
+
   return (
     <section className={styles.myProgress}>
       <div className={styles.myProgress__wrapper}>
@@ -35,7 +43,11 @@ function MyProgress() {
             placeholder="Введите значение"
           />
         </div>
-        <button type="button" className={styles.myProgress__submit}>
+        <button
+          onClick={test}
+          type="button"
+          className={styles.myProgress__submit}
+        >
           Отправить
         </button>
       </div>
