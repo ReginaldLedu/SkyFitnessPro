@@ -1,20 +1,23 @@
-/* eslint-disable import/named */
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import S from "./Profile.module.css";
-import logo from "../../imgAl/logo.png";
-import arrow from "../../imgAl/arrow.png";
-import NewPwd from "./NewPwd";
-import NewLogin from "./NewLogin";
-import SelectWorkout from "./SelectWorkout";
+import logo from "../../img/logo__black.png";
+import arrow from "../../img/arrow.png";
+import NewPwd from "../../components/NewPwd/NewPwd";
+import NewLogin from "../../components/NewLogin/NewLogin";
+import SelectWorkout from "../../components/SelectWorkout/SelectWorkout";
 
 function Profile() {
   const [isNpwOpen, setIsNpwOpen] = useState(false);
   const [isNlogOpen, setIsNlogOpen] = useState(false);
   const [isTrainingOpen, setIsTrainingOpen] = useState(false);
+
   return (
     <div className={S.profile_page}>
       <header className={S.header}>
-        <img className={S.header_logo} src={logo} alt="logo" />
+        <Link to="/" className={S.header_logo}>
+          <img className={S.header_logo} src={logo} alt="logo" />
+        </Link>
         <div className={S.user_block}>
           <div className={S.user_block__avatar} />
           <div className={S.user_block__name}>Сергей</div>

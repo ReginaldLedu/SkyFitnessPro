@@ -1,25 +1,16 @@
-* {
-	font-family: "StratosSkyeng", sans-serif;
-	margin: 0;
-	padding: 0;
- }
- 
- body {
-	background-color: white;
- }
- .cover {
+.cover {
 	width: 100vw;
 	height: 100%;
 	position: fixed;
- 
+
 	top: 0;
 	left: 0;
 	z-index: 10;
 	background-color: #908d8d;
 	opacity: 0.7;
- }
- 
- .header__wrapper {
+}
+
+.header__wrapper {
 	width: 1160px;
 	margin: auto;
 	display: -webkit-box;
@@ -29,9 +20,9 @@
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 	padding-top: 24px;
- }
- 
- .header__name {
+}
+
+.header__name {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -39,55 +30,55 @@
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
- }
- 
- .name__img {
+}
+
+.name__img {
 	width: 50px;
 	height: 50px;
 	border-radius: 50%;
 	background-color: #d9d9d9;
- }
- 
- .name__text {
+}
+
+.name__text {
 	font-size: 24px;
 	font-weight: 400;
 	line-height: 32px;
 	letter-spacing: -0.1000000015px;
 	text-align: right;
- }
- 
- .workout__auth {
+}
+
+.workout__auth {
 	width: 1160px;
 	margin: auto;
 	margin-bottom: 40px;
- }
- 
- .workout-authorized__title {
+}
+
+.workout-authorized__title {
 	font-size: 48px;
 	font-weight: 400;
 	line-height: 56px;
 	letter-spacing: 0em;
 	text-align: left;
 	margin-top: 66px;
- }
- 
- .workout-authorized__path {
+}
+
+.workout-authorized__path {
 	font-size: 32px;
 	font-weight: 400;
 	line-height: 40px;
 	letter-spacing: 0em;
 	text-align: left;
 	margin-top: 40px;
- }
- 
- .workout-authorized__video {
+}
+
+.workout-authorized__video {
 	width: 1160px;
 	background-color: gray;
 	height: 639px;
 	margin-top: 40px;
- }
- 
- .workout-authorized__info {
+}
+
+.workout-authorized__info {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -95,22 +86,22 @@
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 	margin-top: 75px;
- }
- 
- .workout-authorized__exercises-title {
+}
+
+.workout-authorized__exercises-title {
 	font-size: 32px;
 	font-weight: 400;
 	line-height: 40px;
 	letter-spacing: 0em;
 	text-align: left;
- }
- 
- .workout-authorized__list {
+}
+
+.workout-authorized__list {
 	margin-top: 30px;
 	list-style: disc inside;
- }
- 
- .workout-authorized__check {
+}
+
+.workout-authorized__check {
 	margin-top: 40px;
 	width: 275px;
 	height: 52px;
@@ -123,18 +114,18 @@
 	line-height: 24px;
 	letter-spacing: -0.0500000007px;
 	text-align: center;
- }
- 
- .exercises__item {
+}
+
+.exercises__item {
 	font-size: 24px;
 	font-weight: 400;
 	line-height: 32px;
 	letter-spacing: 0em;
 	text-align: left;
 	margin-top: 5px;
- }
- 
- .workout-authorized__progress {
+}
+
+.workout-authorized__progress {
 	width: 638px;
 	height: 336px;
 	background: #f2f2f2;
@@ -148,29 +139,29 @@
 	-webkit-box-align: center;
 	-ms-flex-align: center;
 	align-items: center;
- }
- 
- .progress__wrapper {
+}
+
+.progress__wrapper {
 	width: 539px;
- }
- 
- .progress__title {
+}
+
+.progress__title {
 	font-size: 32px;
 	font-weight: 400;
 	line-height: 40px;
 	letter-spacing: 0em;
 	text-align: center;
- }
- 
- .progress__text {
+}
+
+.progress__text {
 	font-size: 24px;
 	font-weight: 400;
 	line-height: 32px;
 	letter-spacing: 0em;
 	text-align: left;
- }
- 
- .progress__item {
+}
+
+.progress__item {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -178,12 +169,11 @@
 	-ms-flex-pack: justify;
 	justify-content: space-between;
 	margin-top: 30px;
- }
- 
- .progress__scale {
+}
+
+.progress__scale {
 	width: 278px;
 	height: 36px;
 	border-radius: 22px;
 	border: 2px solid #565eef;
- }
- 
+}

@@ -1,12 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    background-color: #fafafa;
-    font-family: "StratosSkyeng", sans-serif;
+.profile_page {
     padding-left: calc(50vw - 580px);
     padding-right: calc(50vw - 580px);
 }
@@ -14,7 +6,7 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
-    margin-top: 25px;
+    margin-top: 30px;
 }
 
 .header_logo {
@@ -86,9 +78,11 @@ body {
     border: none;
     cursor: pointer;
 }
-.mycourses_block{
+
+.mycourses_block {
     margin-bottom: 615px;
 }
+
 .mycourses_block__header {
     font-size: 48px;
     font-style: normal;
@@ -108,7 +102,7 @@ body {
     height: 480px;
     border-radius: 30px;
     box-shadow: 0px 0px 10px 10px #0000001A;
-    background-image: url(../../imgAl/yoga.png);
+    background-image: url(../../img/profile/yoga.png);
     background-size: cover;
     box-sizing: content-box;
 }
@@ -119,7 +113,7 @@ body {
     border-radius: 30px;
     box-shadow: 0px 0px 10px 10px #0000001A;
     background-size: cover;
-    background-image: url(../../imgAl/strech.png);
+    background-image: url(../../img/profile/strech.png);
 }
 
 .mycourses__item_bflex {
@@ -128,7 +122,7 @@ body {
     border-radius: 30px;
     box-shadow: 0px 0px 10px 10px #0000001A;
     background-size: cover;
-    background-image: url(../../imgAl/bflex.png);
+    background-image: url(../../img/profile/bflex.png);
 }
 
 .item_text {
