@@ -20,7 +20,7 @@ function Profile() {
           <div className={S.user_block__name}>Сергей</div>
           <img className={S.user_block__arrow} src={arrow} alt="arrow" />
         </div>
-        {/* <SelectWorkout /> */}
+        <SelectWorkout />
         {isNpwOpen && <NewPwd />}
         {isNlogOpen && <NewLogin />}
       </header>
