@@ -23,7 +23,7 @@ function Main() {
   return (
     <div className={S.container}>
       <div className={S.top__row}>
-        <Link to="/" className={S.logo__container} />
+        <Link to="/login" className={S.logo__container} />
         <button onClick={enter} type="button" className={S.login__button}>
           Войти
         </button>

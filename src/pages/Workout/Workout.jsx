@@ -1,4 +1,8 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  submitProgress,
+  backToInitial,
+} from "../../store/reducers/myProgressReducer";
 import styles from "./Workout.module.css";
 import MyProgress from "../../components/Workout progress/myProgress";
 
@@ -50,7 +54,7 @@ function Workout() {
             allowfullscreen
           />
         </div>
-       {completeProgressSwitcher === false ? " " : <MyProgress />}
+        {completeProgressSwitcher === false ? " " : <MyProgress />}
         <section className={styles["workout-authorized__info"]}>
           <div className={styles["workout-authorized__exercises"]}>
             <h3 className={styles["workout-authorized__exercises-title"]}>
