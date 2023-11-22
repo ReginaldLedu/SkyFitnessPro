@@ -1,0 +1,69 @@
+.newpwd_window {
+    position: relative;
+    width: 366px;
+    height: 331px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px 10px #0000001A;
+}
+
+.newpwd_logo {
+    width: 220px;
+    height: 35px;
+    margin-top: 33px;
+    margin-bottom: 38px;
+}
+
+.newpwd_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.newpwd_input {
+    border: none;
+    width: 278px;
+    font-size: 18px;
+    color: #000000;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 133.333% */
+    letter-spacing: -0.05px;
+    border-bottom: 1px solid #D0CECE;
+    outline: none;
+    margin-bottom: 38px;
+}
+
+.form_header {
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: -0.05px;
+    margin-bottom: 20px;
+}
+
+.form_button {
+    border-radius: 46px;
+    background: var(--palette-purple-90, #580EA2);
+    width: 278px;
+    height: 52px;
+    font-family: StratosSkyeng;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 133.333% */
+    letter-spacing: -0.05px;
+    color: #FFF;
+    border: none;
+    margin-top: 12px;
+}
