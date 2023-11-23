@@ -1,33 +1,44 @@
-import { useState } from "react";
-import styles from "./Workout.module.css";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  submitProgress,
+  backToInitial,
+} from "../../store/reducers/mainReducers";
 import MyProgress from "../../components/Workout progress/myProgress";
+import S from "./Workout.module.css";
 
 function Workout() {
-  const [myProgress, setMyProgress] = useState(false);
-  const writeMyProgress = () => {
-    setMyProgress(true);
-  };
+  const dispatch = useDispatch();
+  const completeProgressSwitcher = useSelector(
+    (state) => state.mainState.initialState,
+  );
 
+  const writeMyProgress = () => {
+    if (completeProgressSwitcher === false) {
+      dispatch(submitProgress());
+    } else {
+      dispatch(backToInitial());
+    }
+  };
   return (
     <>
-      {myProgress === false ? " " : <div className={styles.cover} />}
+      {completeProgressSwitcher === false ? " " : <div className={S.cover} />}
       <header>
-        <div className={styles.header__wrapper}>
-          <div className={styles.header__logo}>
-            <img src="logo.png" alt="logo_image" className={styles.logo} />
+        <div className={S.header__wrapper}>
+          <div className={S.header__logo}>
+            <img src="logo.png" alt="logo_image" className={S.logo} />
           </div>
-          <div className={styles.header__name}>
-            <div className={styles.name__img} />
-            <p className={styles.name__text}>Сергей</p>
+          <div className={S.header__name}>
+            <div className={S.name__img} />
+            <p className={S.name__text}>Сергей</p>
           </div>
         </div>
       </header>
-      <main className={styles.workout__auth}>
-        <h1 className={styles["workout-authorized__title"]}>Йога</h1>
-        <h2 className={styles["workout-authorized__path"]}>
+      <main className={S.workout__auth}>
+        <h1 className={S["workout-authorized__title"]}>Йога</h1>
+        <h2 className={S["workout-authorized__path"]}>
           Красота и здоровье / Йога на каждый день / 2 день
         </h2>
-        <div className={styles["workout-authorized__video"]}>
+        <div className={S["workout-authorized__video"]}>
           <iframe
             width="1160"
             height="639"
@@ -38,20 +49,20 @@ function Workout() {
             allowfullscreen
           />
         </div>
-        {myProgress === false ? " " : <MyProgress />}
-        <section className={styles["workout-authorized__info"]}>
-          <div className={styles["workout-authorized__exercises"]}>
-            <h3 className={styles["workout-authorized__exercises-title"]}>
+        {completeProgressSwitcher === false ? " " : <MyProgress />}
+        <section className={S["workout-authorized__info"]}>
+          <div className={S["workout-authorized__exercises"]}>
+            <h3 className={S["workout-authorized__exercises-title"]}>
               Упражнения
             </h3>
-            <ul className={styles["workout-authorized__list"]}>
-              <li className={styles.exercises__item}>
+            <ul className={S["workout-authorized__list"]}>
+              <li className={S.exercises__item}>
                 Наклон вперед (10 повторений)
               </li>
-              <li className={styles.exercises__item}>
+              <li className={S.exercises__item}>
                 Наклон назад (10 повторений)
               </li>
-              <li className={styles.exercises__item}>
+              <li className={S.exercises__item}>
                 Поднятие ног, согнутых в коленях <br />
                 (5 повторений)
               </li>
@@ -59,32 +70,32 @@ function Workout() {
             <button
               onClick={writeMyProgress}
               type="button"
-              className={styles["workout-authorized__check"]}
+              className={S["workout-authorized__check"]}
             >
               Заполнить свой прогресс
             </button>
           </div>
-          <div className={styles["workout-authorized__progress"]}>
-            <div className={styles.progress__wrapper}>
-              <h3 className={styles.progress__title}>
+          <div className={S["workout-authorized__progress"]}>
+            <div className={S.progress__wrapper}>
+              <h3 className={S.progress__title}>
                 Мой прогресс по тренировке 2:
               </h3>
-              <div className={styles.progress__item}>
-                <p className={styles.progress__text}>Наклоны вперед</p>
-                <div className={styles.progress__scale}>
-                  <div className={styles.progress__scale_inner} />
+              <div className={S.progress__item}>
+                <p className={S.progress__text}>Наклоны вперед</p>
+                <div className={S.progress__scale}>
+                  <div className={S.progress__scale_inner} />
                 </div>
               </div>
-              <div className={styles.progress__item}>
-                <p className={styles.progress__text}>Наклоны назад</p>
-                <div className={styles.progress__scale} />
+              <div className={S.progress__item}>
+                <p className={S.progress__text}>Наклоны назад</p>
+                <div className={S.progress__scale} />
               </div>
-              <div className={styles.progress__item}>
-                <p className={styles.progress__text}>
+              <div className={S.progress__item}>
+                <p className={S.progress__text}>
                   Поднятие ног, <br />
                   согнутых в коленях
                 </p>
-                <div className={styles.progress__scale} />
+                <div className={S.progress__scale} />
               </div>
             </div>
           </div>
