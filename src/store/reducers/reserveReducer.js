@@ -1,12 +1,12 @@
 /* eslint-disable default-param-last */
 import { ADD_TODO, ADD_USER } from "../actions/types/types";
 
-const initialFitness = {
+const initialState = {
   todo: {},
   user: {},
 };
 
-function fitnessReducer(state = initialFitness, action) {
+function reserveReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO: {
       const { todo } = action.payload;
@@ -31,4 +31,4 @@ function fitnessReducer(state = initialFitness, action) {
   }
 }
 
-export default fitnessReducer;
+export default reserveReducer;
