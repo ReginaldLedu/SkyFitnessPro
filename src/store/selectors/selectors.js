@@ -1,5 +1,5 @@
-const mainSelector = (store) => store.mainState;
-const reserveSelector = (store) => store.reserveState;
+const mainSelector = (store) => store.rootReducer.mainState;
+const reserveSelector = (store) => store.rootReducer.reserveState;
 
 // mainState
 const userSelector = (store) => mainSelector(store)?.user || [];

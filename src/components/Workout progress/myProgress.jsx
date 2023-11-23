@@ -5,7 +5,7 @@ import S from "./myProgress.module.css";
 function MyProgress() {
   const dispatch = useDispatch();
   const completeProgressSwitcher = useSelector(
-    (state) => state.mainState.initialState,
+    (state) => state.rootReducer.mainState.initialState,
   );
 
   const submitProgressSwitch = () => {

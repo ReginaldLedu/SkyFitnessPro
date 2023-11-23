@@ -9,7 +9,7 @@ import S from "./Workout.module.css";
 function Workout() {
   const dispatch = useDispatch();
   const completeProgressSwitcher = useSelector(
-    (state) => state.mainState.initialState,
+    (state) => state.rootReducer.mainState.initialState,
   );
 
   const writeMyProgress = () => {
@@ -19,6 +19,7 @@ function Workout() {
       dispatch(backToInitial());
     }
   };
+
   return (
     <>
       {completeProgressSwitcher === false ? " " : <div className={S.cover} />}
