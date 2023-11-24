@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import S from "./Profile.module.css";
 import logo from "../../img/logo__black.png";
@@ -11,7 +12,7 @@ function Profile() {
   const [isNpwOpen, setIsNpwOpen] = useState(false);
   const [isNlogOpen, setIsNlogOpen] = useState(false);
   const [isTrainingOpen, setIsTrainingOpen] = useState(false);
-
+  const userData = useSelector((store) => store.rootReducer.mainState.user);
   return (
     <div className={S.profile_page}>
       <header className={S.header}>
@@ -24,13 +25,13 @@ function Profile() {
           <img className={S.user_block__arrow} src={arrow} alt="arrow" />
         </div>
         {isTrainingOpen && <SelectWorkout />}
-        {isNpwOpen && <NewPwd />}
-        {isNlogOpen && <NewLogin />}
+        {isNpwOpen && <NewPwd setIsNpwOpen={setIsNpwOpen}/>}
+        {isNlogOpen && <NewLogin setIsNlogOpen={setIsNlogOpen}/>}
       </header>
       <div className={S.profile_block}>
         <p className={S.profile_block__header}>Мой профиль</p>
-        <p className={S.profile_block__data}>Логин: sergey.petrov96</p>
-        <p className={S.profile_block__data}>Пароль: 4fkhdj880d</p>
+        <p className={S.profile_block__data}>Логин: {userData.login}</p>
+        <p className={S.profile_block__data}>Пароль: {userData.password}</p>
         <div className={S.button_block}>
           <button
             className={S.profile_block__button}
