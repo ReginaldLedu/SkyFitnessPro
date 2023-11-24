@@ -66,3 +66,16 @@
     border: none;
     margin-top: 12px;
 }
+
+.cross{
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 20px;
+    left: 250px;
+    cursor: pointer;
+}
+
+.newpwd_header{
+    position: relative;
+}

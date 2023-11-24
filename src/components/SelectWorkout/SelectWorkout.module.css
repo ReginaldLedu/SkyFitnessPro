@@ -11,6 +11,7 @@
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 100;
+    box-shadow: 0px 0px 10px 10px #0000001A;
 }
 
 .sw_window__header {
@@ -107,4 +108,17 @@
 .check_box {
     position: relative;
     gap: 11px;
+}
+
+.cross {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 20px;
+    left: 350px;
+    cursor: pointer;
+}
+
+.sw_header {
+    position: relative;
 }

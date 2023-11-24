@@ -1,8 +1,11 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import logo from "../../img/logo__black.png";
 import { loginUpdate } from "../../store/reducers/mainReducers";
 import S from "./NewLogin.module.css";
+import cross from "../../img/profile/cross.svg";
 
 function NewLogin({ setIsNlogOpen }) {
   const dispatch = useDispatch();
@@ -12,13 +15,20 @@ function NewLogin({ setIsNlogOpen }) {
       setIsNlogOpen(false);
       dispatch(loginUpdate(newLogin));
     } else {
-      alert('Поле логин не может быть пустым!')
+      alert("Поле логин не может быть пустым!");
     }
-
   };
   return (
     <div className={S.newpwd_window}>
-      <img className={S.newpwd_logo} src={logo} alt="logo" />
+      <div className={S.newpwd_header}>
+        <img
+          className={S.cross}
+          src={cross}
+          alt="logo"
+          onClick={() => setIsNlogOpen(false)}
+        />
+        <img className={S.newpwd_logo} src={logo} alt="logo" />
+      </div>
       <form action="" className={S.newpwd_form}>
         <p className={S.form_header}>Новый логин:</p>
         <input

@@ -24,9 +24,11 @@ function Profile() {
           <div className={S.user_block__name}>Сергей</div>
           <img className={S.user_block__arrow} src={arrow} alt="arrow" />
         </div>
-        {isTrainingOpen && <SelectWorkout />}
-        {isNpwOpen && <NewPwd setIsNpwOpen={setIsNpwOpen}/>}
-        {isNlogOpen && <NewLogin setIsNlogOpen={setIsNlogOpen}/>}
+        {isTrainingOpen && (
+          <SelectWorkout setIsTrainingOpen={setIsTrainingOpen} />
+        )}
+        {isNpwOpen && <NewPwd setIsNpwOpen={setIsNpwOpen} />}
+        {isNlogOpen && <NewLogin setIsNlogOpen={setIsNlogOpen} />}
       </header>
       <div className={S.profile_block}>
         <p className={S.profile_block__header}>Мой профиль</p>
@@ -36,14 +38,22 @@ function Profile() {
           <button
             className={S.profile_block__button}
             type="button"
-            onClick={() => setIsNlogOpen(!isNlogOpen)}
+            onClick={() => {
+              setIsNpwOpen(false);
+              setIsTrainingOpen(false);
+              setIsNlogOpen(!isNlogOpen);
+            }}
           >
             Редактировать логин
           </button>
           <button
             className={S.profile_block__button}
             type="button"
-            onClick={() => setIsNpwOpen(!isNpwOpen)}
+            onClick={() => {
+              setIsTrainingOpen(false);
+              setIsNlogOpen(false);
+              setIsNpwOpen(!isNpwOpen);
+            }}
           >
             Редактировать пароль
           </button>
@@ -56,7 +66,11 @@ function Profile() {
               <button
                 className={S.item_button}
                 type="button"
-                onClick={() => setIsTrainingOpen(!isTrainingOpen)}
+                onClick={() => {
+                  setIsNlogOpen(false);
+                  setIsNpwOpen(false);
+                  setIsTrainingOpen(!isTrainingOpen);
+                }}
               >
                 Перейти →
               </button>

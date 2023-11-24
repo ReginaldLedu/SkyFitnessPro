@@ -1,10 +1,16 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import S from "./SelectWorkout.module.css";
 import added from "../../img/profile/added.svg";
+import cross from "../../img/profile/cross.svg";
 
-function SelectWorkout() {
+function SelectWorkout({setIsTrainingOpen}) {
   return (
     <div className={S.sw_window}>
+      <div className={S.sw_header}>
+      <img className={S.cross} src={cross} alt="cross" onClick={()=> setIsTrainingOpen(false)}/>
       <p className={S.sw_window__header}>Выберите тренировку</p>
+      </div>
       <div className={S.items_list}>
         <div className={S.item_clicked}>
           <div className={S.check_box}>
