@@ -7,6 +7,7 @@ const initialState = {
     id: 0,
     login: "admin",
     password: "admin",
+    
   },
 };
 
@@ -32,9 +33,21 @@ const mainReducers = createSlice({
     passwordUpdate: (state, action) => {
       state.user.password = action.payload;
     },
+    exitFromApp: (state) => {
+      state.user.id = 0;
+    },
+    enterToApp: (state) => {
+      state.user.id = 1;
+    },
   },
 });
 
-export const { submitProgress, backToInitial, loginUpdate, passwordUpdate } =
-  mainReducers.actions;
+export const {
+  submitProgress,
+  backToInitial,
+  loginUpdate,
+  passwordUpdate,
+  exitFromApp,
+  enterToApp
+} = mainReducers.actions;
 export default mainReducers;
