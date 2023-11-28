@@ -5,6 +5,7 @@ import { useState } from "react";
 import userSelector, { courseSelector } from "../../store/selectors/selectors";
 import EnterButton from "../../components/EnterButton/EnterButton";
 import S from "./Description.module.css";
+import DropArrow from "../../components/DropArrow/DropArrow";
 
 function Description() {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ function Description() {
       {!singUpCheck ? " " : <div className={S.cover} />}
       <header className={S.header}>
         <Link to="/" className={S.header__logo} />
-        <EnterButton />
+        {!user.logout ? <EnterButton /> : <DropArrow />}
       </header>
       <div className={S.description}>
         <section className={S.description__logo}>
