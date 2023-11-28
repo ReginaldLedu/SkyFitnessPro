@@ -39,7 +39,7 @@ function DropArrow() {
       >
         <div className={S.drop_circle} />
         <div className={S.drop_username}>
-          {user.login.length > 11 ? `${user.login.slice(0, 11)}…` : user.login}{" "}
+          {user.login.length > 11 ? `${user.login.slice(0, 11)}…` : user.login}
         </div>
         <div className={S.drop_arrow}>{String.fromCodePoint(9013)}</div>
       </div>
