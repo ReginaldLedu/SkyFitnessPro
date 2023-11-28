@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { courseUpdate } from "../../store/reducers/mainReducers";
 import { useGetCoursesQuery } from "../../api/api";
 import sticker from "../../img/main/sticker.svg";
@@ -8,17 +8,17 @@ import stretch from "../../img/main/stretch.png";
 import danceFitness from "../../img/main/danceFitness.svg";
 import stepAerobics from "../../img/main/stepAerobics.svg";
 import bodyFlex from "../../img/main/bodyFlex.png";
-
+import userSelector from "../../store/selectors/selectors";
+import DropArrow from "../../components/DropArrow/DropArrow";
+import EnterButton from "../../components/EnterButton/EnterButton";
 import S from "./Main.module.css";
 
 function Main() {
+  const user = useSelector(userSelector);
   const { data = [] } = useGetCoursesQuery();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const enter = () => {
-    navigate("/login");
-  };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const courses = (course) => {
     switch (course) {
@@ -60,9 +60,7 @@ function Main() {
     <div className={S.container}>
       <div className={S.top__row}>
         <Link to="/" className={S.logo__container} />
-        <button onClick={enter} type="button" className={S.login__button}>
-          Войти
-        </button>
+        {!user.logout ? <EnterButton /> : <DropArrow />}
         <div className={S.sticker}>
           <img alt="sticker" src={sticker} />
         </div>
@@ -118,7 +116,7 @@ function Main() {
       </div>
       <div className={S.bottom__container}>
         <button onClick={scroll} type="button" className={S.bottom__button}>
-          Наверх {String.fromCodePoint(8593)}
+          Наверх {String.fromCodePoint(65514)}
         </button>
       </div>
     </div>
