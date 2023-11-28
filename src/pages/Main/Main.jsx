@@ -16,7 +16,7 @@ function Main() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const enter = () => {
+  const enter = async () => {
     navigate("/login");
   };
 
