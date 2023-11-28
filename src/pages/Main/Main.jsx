@@ -1,6 +1,7 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { courseUpdate } from "../../store/reducers/mainReducers";
+import { useSelector, useDispatch } from "react-redux";
+import { courseUpdate, idUpdate } from "../../store/reducers/mainReducers";
 import { useGetCoursesQuery } from "../../api/api";
 import sticker from "../../img/main/sticker.svg";
 import yoga from "../../img/main/yoga.png";
@@ -8,16 +9,28 @@ import stretch from "../../img/main/stretch.png";
 import danceFitness from "../../img/main/danceFitness.svg";
 import stepAerobics from "../../img/main/stepAerobics.svg";
 import bodyFlex from "../../img/main/bodyFlex.png";
-
+import userSelector from "../../store/selectors/selectors";
 import S from "./Main.module.css";
 
 function Main() {
-  const { data = [] } = useGetCoursesQuery();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const user = useSelector(userSelector);
+  const [dropList, setDropList] = useState(false);
+  const [data = []] = useGetCoursesQuery();
 
-  const enter = async () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const clickToRouteInLogin = () => {
     navigate("/login");
+  };
+
+  const clickToExitButton = () => {
+    dispatch(idUpdate(0));
+    navigate("/login");
+  };
+
+  const clickToRouteInProfile = () => {
+    navigate("/profile");
   };
 
   const courses = (course) => {
@@ -60,9 +73,58 @@ function Main() {
     <div className={S.container}>
       <div className={S.top__row}>
         <Link to="/" className={S.logo__container} />
-        <button onClick={enter} type="button" className={S.login__button}>
-          Войти
-        </button>
+        {user.id === 0 ? (
+          <button
+            onClick={clickToRouteInLogin}
+            type="button"
+            className={S.login__button}
+          >
+            Войти
+          </button>
+        ) : (
+          <div
+            className={S.drop_container}
+            aria-hidden="true"
+            tabIndex="-1"
+            onMouseLeave={() => setDropList(false)}
+            onBlur={() => {}}
+          >
+            <div
+              className={S.drop_title}
+              aria-hidden="true"
+              onClick={() => setDropList((prev) => !prev)}
+            >
+              <div className={S.drop_circle} />
+              <div className={S.drop_username}>{user.login.slice(0, 11)}…</div>
+              <div className={S.drop_arrow}>{String.fromCodePoint(9013)}</div>
+            </div>
+            {dropList ? (
+              <div className={`${S.drop_list} ${S.drop_list_open}`}>
+                <div
+                  className={S.link_exit}
+                  aria-hidden="true"
+                  onClick={clickToExitButton}
+                >
+                  Выйти
+                </div>
+                <div
+                  className={S.link_profile}
+                  aria-hidden="true"
+                  onClick={clickToRouteInProfile}
+                >
+                  Профиль
+                </div>
+                <div className={S.link_main}>На главную</div>
+              </div>
+            ) : (
+              <div className={`${S.drop_list} ${S.drop_list_close}`}>
+                <div className={S.link_exit}>Выйти</div>
+                <div className={S.link_profile}>Профиль</div>
+                <div className={S.link_main}>На главную</div>
+              </div>
+            )}
+          </div>
+        )}
         <div className={S.sticker}>
           <img alt="sticker" src={sticker} />
         </div>
@@ -118,7 +180,7 @@ function Main() {
       </div>
       <div className={S.bottom__container}>
         <button onClick={scroll} type="button" className={S.bottom__button}>
-          Наверх {String.fromCodePoint(8593)}
+          Наверх {String.fromCodePoint(65514)}
         </button>
       </div>
     </div>

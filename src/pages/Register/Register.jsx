@@ -1,7 +1,8 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import S from "./Register.module.css";
 
 function Register() {
+  const navigate =useNavigate();
   return (
     <div className={S.body__register}>
       <section className={S.register__screen}>
@@ -23,6 +24,10 @@ function Register() {
 
           <button type="button" className={S.register__button}>
             Зарегистрироваться
+          </button>
+
+          <button type="button" className={S.login__button} onClick={()=>navigate("/login")}>
+            Войти
           </button>
         </div>
       </section>
