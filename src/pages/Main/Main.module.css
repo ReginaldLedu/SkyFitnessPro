@@ -35,28 +35,6 @@
   position: relative;
 }
 
-.login__button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 24px;
-  font-weight: 400;
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #140d40;
-  border-radius: 46px;
-  width: 77px;
-  height: 36px;
-
-  &:hover {
-    background-color: #2d1f79;
-  }
-
-  &:active {
-    background-color: #3b29a1;
-  }
-}
-
 .small__title {
   line-height: 23px;
   font-weight: 400;
@@ -139,90 +117,5 @@
 
   &:active {
     background-color: #ebffab;
-  }
-}
-.drop_container{
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 1rem;
-  flex-direction: column;
-  color: #ffffff;
-  font-size: 1.5rem;
-  cursor: pointer;
-  position: relative; 
-}
-.drop_title{
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 1rem;
-  flex-direction: row;
-  color: #ffffff;
-}
-.drop_circle{
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background-color: rgb(105, 105, 105);
-}
-.drop_arrow {
-  font-family:arial;
-  font-weight: 900;
-}
-@keyframes dropping-down {
-  from{
-    height: 0px;    
-  }
-  to{
-    height: 143px;    
-  }  
-}
-@keyframes dropping-up {
-  from{
-    height: 143px;    
-  }
-  to{
-    height: 0px;    
-  }
-}
-.drop_list{
-  position: absolute;
-  top: 47px;
-  left: 50px;  
-  display: flex;
-  gap: 25px;
-  flex-direction: column-reverse;  
-  z-index: 1;
-  text-align: right;  
-  overflow: hidden;  
-  width: 130px;
-}
-.drop_list_open{  
-  animation-name: dropping-down;
-  animation-duration: 0.5s;  
-  height: 143px;
-}
-.drop_list_close{  
-  animation-name: dropping-up;
-  animation-duration: 0.5s; 
-  height: 0px; 
-}
-
-
-.link_main{
-  &:hover{
-    opacity: 50%;
-  }
-}
-.link_profile{
-  &:hover{
-    opacity: 50%;
-  }
-}.link_exit{
-  &:hover{
-    opacity: 50%;
   }
 }

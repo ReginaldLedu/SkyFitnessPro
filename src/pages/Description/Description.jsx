@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import userSelector, { courseSelector } from "../../store/selectors/selectors";
+import EnterButton from "../../components/EnterButton/EnterButton";
 import S from "./Description.module.css";
 
 function Description() {
@@ -10,10 +11,6 @@ function Description() {
   const course = useSelector(courseSelector);
   const user = useSelector(userSelector);
   const [singUpCheck, setSingUpCheck] = useState(false);
-
-  const enter = () => {
-    navigate("/login");
-  };
 
   const signUp = () => {
     if (!user.logout) navigate("/login");
@@ -25,9 +22,7 @@ function Description() {
       {!singUpCheck ? " " : <div className={S.cover} />}
       <header className={S.header}>
         <Link to="/" className={S.header__logo} />
-        <button onClick={enter} type="button" className={S.header__button}>
-          Войти
-        </button>
+        <EnterButton />
       </header>
       <div className={S.description}>
         <section className={S.description__logo}>
@@ -79,7 +74,7 @@ function Description() {
         )}
       </div>
       {!singUpCheck ? (
-        " "
+        ""
       ) : (
         <div className={S.progress}>
           <div className={S.progress__box}>
