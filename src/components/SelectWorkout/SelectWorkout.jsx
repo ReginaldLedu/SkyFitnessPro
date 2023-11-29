@@ -7,7 +7,7 @@ import cross from "../../img/profile/cross.svg";
 function SelectWorkout({ setIsTrainingOpen, data, type }) {
   // console.log(data[type]);
   // const workoutsArray = data[type];
-  console.log(data[type])
+  console.log(data)
   return (
     <div className={S.sw_window}>
       <div className={S.sw_header}>

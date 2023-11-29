@@ -1,3 +1,4 @@
+/* eslint-disable dot-notation */
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -15,8 +16,8 @@ function Profile() {
   const [isNpwOpen, setIsNpwOpen] = useState(false);
   const [isNlogOpen, setIsNlogOpen] = useState(false);
   const [isTrainingOpen, setIsTrainingOpen] = useState(false);
+  const [trainingType, setTrainingType] = useState(null);
   const userData = useSelector((store) => store.rootReducer.mainState.user);
-  const trainingType = ["yoga", "body_flex"];
   return (
     <div className={S.profile_page}>
       <header className={S.header}>
@@ -25,15 +26,12 @@ function Profile() {
         </Link>
         <div className={S.user_block}>
           <DropArrow />
-          {/* <div className={S.user_block__avatar} />
-          <div className={S.user_block__name}>Сергей</div>
-          <img className={S.user_block__arrow} src={arrow} alt="arrow" /> */}
         </div>
         {isTrainingOpen && (
           <SelectWorkout
             setIsTrainingOpen={setIsTrainingOpen}
             data={data}
-            type={trainingType[0]}
+            type={trainingType}
           />
         )}
         {isNpwOpen && <NewPwd setIsNpwOpen={setIsNpwOpen} />}
@@ -79,6 +77,7 @@ function Profile() {
                   setIsNlogOpen(false);
                   setIsNpwOpen(false);
                   setIsTrainingOpen(!isTrainingOpen);
+                  setTrainingType("yoga");
                 }}
               >
                 Перейти →
@@ -86,13 +85,31 @@ function Profile() {
             </div>
             <div className={S.mycourses__item_strech}>
               <p className={S.item_text}>Стретчинг</p>
-              <button className={S.item_button} type="button">
+              <button
+                className={S.item_button}
+                type="button"
+                onClick={() => {
+                  setIsNlogOpen(false);
+                  setIsNpwOpen(false);
+                  setIsTrainingOpen(!isTrainingOpen);
+                  setTrainingType("stretching");
+                }}
+              >
                 Перейти →
               </button>
             </div>
             <div className={S.mycourses__item_bflex}>
               <p className={S.item_text}>Бодифлекс</p>
-              <button className={S.item_button} type="button">
+              <button
+                className={S.item_button}
+                type="button"
+                onClick={() => {
+                  setIsNlogOpen(false);
+                  setIsNpwOpen(false);
+                  setIsTrainingOpen(!isTrainingOpen);
+                  setTrainingType("body_flex");
+                }}
+              >
                 Перейти →
               </button>
             </div>
