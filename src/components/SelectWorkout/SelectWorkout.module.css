@@ -12,6 +12,7 @@
     transform: translate(-50%, -50%);
     z-index: 100;
     box-shadow: 0px 0px 10px 10px #0000001A;
+    overflow: auto;
 }
 
 .sw_window__header {
@@ -49,6 +50,7 @@
     /* 23px */
     letter-spacing: -0.05px;
     margin-top: 12px;
+    text-align: center
 }
 
 .item__text {
@@ -59,6 +61,7 @@
     /* 112.5% */
     letter-spacing: 0.016px;
     margin-bottom: 18px;
+    text-align: center
 }
 
 .item_clicked {

@@ -3,16 +3,20 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import S from "./Profile.module.css";
 import logo from "../../img/logo__black.png";
-import arrow from "../../img/arrow.png";
+// import arrow from "../../img/arrow.png";
 import NewPwd from "../../components/NewPwd/NewPwd";
 import NewLogin from "../../components/NewLogin/NewLogin";
 import SelectWorkout from "../../components/SelectWorkout/SelectWorkout";
+import { useGetWorkoutsQuery } from "../../api/api";
+import DropArrow from "../../components/DropArrow/DropArrow";
 
 function Profile() {
+  const { data = [] } = useGetWorkoutsQuery();
   const [isNpwOpen, setIsNpwOpen] = useState(false);
   const [isNlogOpen, setIsNlogOpen] = useState(false);
   const [isTrainingOpen, setIsTrainingOpen] = useState(false);
   const userData = useSelector((store) => store.rootReducer.mainState.user);
+  const trainingType = ["yoga", "body_flex"];
   return (
     <div className={S.profile_page}>
       <header className={S.header}>
@@ -20,12 +24,17 @@ function Profile() {
           <img className={S.header_logo} src={logo} alt="logo" />
         </Link>
         <div className={S.user_block}>
-          <div className={S.user_block__avatar} />
+          <DropArrow />
+          {/* <div className={S.user_block__avatar} />
           <div className={S.user_block__name}>Сергей</div>
-          <img className={S.user_block__arrow} src={arrow} alt="arrow" />
+          <img className={S.user_block__arrow} src={arrow} alt="arrow" /> */}
         </div>
         {isTrainingOpen && (
-          <SelectWorkout setIsTrainingOpen={setIsTrainingOpen} />
+          <SelectWorkout
+            setIsTrainingOpen={setIsTrainingOpen}
+            data={data}
+            type={trainingType[0]}
+          />
         )}
         {isNpwOpen && <NewPwd setIsNpwOpen={setIsNpwOpen} />}
         {isNlogOpen && <NewLogin setIsNlogOpen={setIsNlogOpen} />}
