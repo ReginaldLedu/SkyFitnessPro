@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
 }
+
 .register__screen {
   width: 366px;
   height: 439px;
@@ -77,6 +78,7 @@
 .register__button:active {
   background-color: #271a58;
 }
+
 .login__button {
   width: 278px;
   height: 52px;
@@ -93,16 +95,21 @@
 }
 
 .login__button:hover {
-  background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(#d0cece),
-    to(#d0cece)
-  );
+  background: -webkit-gradient(linear,
+      left bottom,
+      left top,
+      from(#d0cece),
+      to(#d0cece));
   background: linear-gradient(0deg, #d0cece, #d0cece);
 }
 
 .login__button:active {
   background-color: #d0cece;
+}
+
+.error {
+  color: coral;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
 }

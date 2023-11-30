@@ -1,23 +1,56 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { logoutUpdate } from "../../store/reducers/mainReducers";
+import { userUpdate } from "../../store/reducers/mainReducers";
+import { getUser } from "../../api/api";
 import S from "./Login.module.css";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [userLogin, setUserLogin] = useState("");
-  const [password, setPassword] = useState("");
 
-  const clickToLoginInApp = () => {
-    if (userLogin === "admin" && password === "admin") {
-      dispatch(logoutUpdate(true));
-      navigate("/profile");
-    } else {
-      alert("Неправильно!!!");
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+  const [disabled, setDisabled] = useState(false);
+  const [errorLog, setError] = useState(null);
+
+  const checkInput = () => {
+    if (!login) throw new Error("Не введен логин");
+    if (!password) throw new Error("Не введен пароль");
+  };
+
+  const clickToLoginInApp = async () => {
+    try {
+      setDisabled(true);
+      checkInput();
+      const user = await getUser(login);
+
+      if (user && user.password === password) {
+        dispatch(
+          userUpdate({
+            login,
+            password,
+            logout: true,
+          }),
+        );
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ login, password, logout: true }),
+        );
+        navigate("/profile");
+      } else {
+        throw new Error("Пароль или логин введены не верно");
+      }
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setDisabled(false);
     }
   };
+
+  useEffect(() => {
+    setError(null);
+  }, [login, password]);
 
   return (
     <div className={S.body__login}>
@@ -30,8 +63,8 @@ function Login() {
             type="text"
             className={S.login__name}
             placeholder="Логин"
-            value={userLogin}
-            onChange={(event) => setUserLogin(event.target.value)}
+            value={login}
+            onChange={(event) => setLogin(event.target.value)}
           />
           <input
             type="password"
@@ -40,7 +73,9 @@ function Login() {
             value={password}
             onChange={(event) => setPassword(event.target.value)}
           />
+          {errorLog && <div className={S.error}>{errorLog}</div>}
           <button
+            disabled={disabled}
             type="button"
             className={S.login__button}
             onClick={clickToLoginInApp}

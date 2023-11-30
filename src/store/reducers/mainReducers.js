@@ -4,9 +4,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   initialState: false,
   user: {
-    id: 1,
-    login: "admin",
-    password: "admin",
     logout: false,
   },
   course: {
@@ -26,6 +23,17 @@ const initialState = {
     ],
     description:
       "Йога - это философия здорового образа жизни. Тот, кто занимается йогой, становится здоровее и выносливее, после занятий чувствует прилив сил, а также с новой силой может ощутить вкус к жизни. Благодаря комплексному воздействию упражнений происходит проработка всех групп мышц, тренировка суставов, улучшается циркуляция крови. Кроме того, упражнения дарят отличное настроение, заряжают бодростью и помогают противостоять стрессам.",
+  },
+  currentWorkout: {
+    exercises: [
+      "Правильное дыхание (20 повторений)",
+      "Наклон вниз, правая рука тянется вверх (10 повторений)",
+      "Наклон вниз, левая рука тянется вверх (10 повторений)",
+      "Перенос веса с ноги на ногу в положении сидя (20 повторений)",
+    ],
+    link: "Ewm-Bfg5ncg",
+    name: "Стретчинг",
+    title: "Основы стретчинга",
   },
 };
 
@@ -57,6 +65,9 @@ const mainReducers = createSlice({
     courseUpdate: (state, action) => {
       state.course = action.payload;
     },
+    setCurrentWorkout: (state, action) => {
+      state.currentWorkout = action.payload;
+    },
   },
 });
 
@@ -69,5 +80,6 @@ export const {
   passwordUpdate,
   logoutUpdate,
   courseUpdate,
+  setCurrentWorkout,
 } = mainReducers.actions;
 export default mainReducers;

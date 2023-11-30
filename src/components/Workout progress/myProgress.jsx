@@ -1,16 +1,12 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { backToInitial } from "../../store/reducers/mainReducers";
 import S from "./myProgress.module.css";
 
 function MyProgress() {
   const dispatch = useDispatch();
-  const completeProgressSwitcher = useSelector(
-    (state) => state.rootReducer.mainState.initialState,
-  );
 
   const submitProgressSwitch = () => {
     dispatch(backToInitial());
-    console.log(completeProgressSwitcher);
   };
 
   return (
