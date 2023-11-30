@@ -5,7 +5,7 @@ import userSelector from "../../store/selectors/selectors";
 function ProtectedRoute() {
   const user = useSelector(userSelector);
 
-  if (user.id === 0) {
+  if (user.logout === 0) {
     return <Navigate to="/" replace />;
   }
 
