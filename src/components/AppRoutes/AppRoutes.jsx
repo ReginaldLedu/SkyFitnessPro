@@ -16,8 +16,8 @@ function AppRoutes() {
       <Route path="/register" element={<Register />} />
       <Route path="/description" element={<Description />} />
       <Route element={<ProtectedRoute />}>
-        <Route path="/profile" element={<Profile />} />
         <Route path="/workout" element={<Workout />} />
+        <Route path="/profile" element={<Profile />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>

@@ -1,6 +1,7 @@
 .container {
   font-family: "StratosSkyeng", sans-serif;
   padding-top: 30px;
+  padding-bottom: 30px;
   background-color: #271a58;
   padding-left: calc(50% - 580px);
   padding-right: calc(50% - 580px);
@@ -32,28 +33,6 @@
   flex-direction: row;
   justify-content: space-between;
   position: relative;
-}
-
-.login__button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 24px;
-  font-weight: 400;
-  font-size: 16px;
-  color: #ffffff;
-  background-color: #140d40;
-  border-radius: 46px;
-  width: 77px;
-  height: 36px;
-
-  &:hover {
-    background-color: #2d1f79;
-  }
-
-  &:active {
-    background-color: #3b29a1;
-  }
 }
 
 .small__title {
@@ -97,7 +76,6 @@
   position: absolute;
   top: -25px;
   left: -25px;
-  border-image: url(../../img/yoga.png);
 }
 
 .card__img_stretch {
