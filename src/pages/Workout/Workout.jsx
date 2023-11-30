@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
+=======
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+>>>>>>> a3b14d3e2f0e0bf69eea2164f1b081a3ff27278b
 import DropArrow from "../../components/DropArrow/DropArrow";
-import WorkoutExercises from "../../components/WorkoutExercises";
+import WorkoutExercises from "../../components/WorkoutExercises/WorkoutExercises";
 import MyProgress from "../../components/Workout progress/myProgress";
 import S from "./Workout.module.css";
 import /* getWorkoutFirebase, */ "../../api/api";
@@ -37,7 +42,7 @@ function Workout() {
     <>
       <header>
         <div className={S.header__wrapper}>
-          <div className={S.header__logo} />
+          <Link to="/" className={S.header__logo} />
           <DropArrow />
         </div>
       </header>

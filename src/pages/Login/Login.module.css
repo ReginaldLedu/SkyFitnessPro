@@ -96,16 +96,21 @@
 }
 
 .register__button:hover {
-  background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(#d0cece),
-    to(#d0cece)
-  );
+  background: -webkit-gradient(linear,
+      left bottom,
+      left top,
+      from(#d0cece),
+      to(#d0cece));
   background: linear-gradient(0deg, #d0cece, #d0cece);
 }
 
 .register__button:active {
   background-color: #d0cece;
+}
+
+.error {
+  color: coral;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
 }
