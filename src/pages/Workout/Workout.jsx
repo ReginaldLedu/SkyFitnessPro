@@ -1,13 +1,37 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import axios from "axios";
 import DropArrow from "../../components/DropArrow/DropArrow";
 import WorkoutExercises from "../../components/WorkoutExercises";
 import MyProgress from "../../components/Workout progress/myProgress";
 import S from "./Workout.module.css";
+import /* getWorkoutFirebase, */ "../../api/api";
+import { courseUpdate } from "../../store/reducers/mainReducers";
 
 function Workout() {
+  const dispatch = useDispatch();
   const completeProgressSwitcher = useSelector(
     (state) => state.rootReducer.mainState.initialState,
   );
+  const courseFromApi = useSelector(
+    (state) => state.rootReducer.mainState.course,
+  );
+  function getWorkoutFirebase() {
+    return (
+      axios
+        .get(
+          "https://skyfitnesspro-abf64-default-rtdb.europe-west1.firebasedatabase.app/courses.json",
+        )
+        // eslint-disable-next-line prefer-arrow-callback
+        .then(function (response) {
+          dispatch(courseUpdate(response.data));
+        })
+    );
+  }
+  useEffect(() => {
+    getWorkoutFirebase();
+    console.log(courseFromApi);
+  }, []);
 
   return (
     <>

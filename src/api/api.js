@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
 
+
 export const coursesApi = createApi({
   reducerPath: "coursesApi",
   baseQuery: fetchBaseQuery({
@@ -42,6 +43,8 @@ export function getUserFirebase(id) {
     )
     .then((response) => response.data);
 }
+
+
 
 export const { useGetCoursesQuery, useGetWorkoutsQuery, useAllUsersQuery } =
   coursesApi;
