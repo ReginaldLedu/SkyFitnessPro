@@ -5,7 +5,7 @@
     align-items: center;
     gap: 1rem;
     flex-direction: column;
-    color: #ffffff;
+    color: black;
     font-size: 1.5rem;
     cursor: pointer;
     position: relative;
@@ -18,7 +18,7 @@
     align-items: center;
     gap: 1rem;
     flex-direction: row;
-    color: #ffffff;
+    color: black;
 }
 
 .drop_circle {
