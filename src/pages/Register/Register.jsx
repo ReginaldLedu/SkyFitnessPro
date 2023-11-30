@@ -18,7 +18,11 @@ function Register() {
 
   const checkInput = () => {
     if (!login) throw new Error("Не введен логин");
+    if (login.length < 5)
+      throw new Error("Логин должен быть минимум из 5 символов");
     if (!password) throw new Error("Не введен пароль");
+    if (password.length < 5)
+      throw new Error("Пароль должен быть минимум из 5 символов");
     if (!repeatPassword) throw new Error("Не введен повторный пароль");
     if (password !== repeatPassword) throw new Error("Пароль не совпадает");
   };
@@ -50,7 +54,7 @@ function Register() {
           logout: true,
         }),
       );
-      navigate("/profile");
+      navigate("/");
     } catch (error) {
       setError(error.message);
     } finally {

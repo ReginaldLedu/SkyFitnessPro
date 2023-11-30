@@ -3,7 +3,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useDispatch } from "react-redux";
 import S from "./SelectWorkout.module.css";
-// import added from "../../img/profile/added.svg";
 import cross from "../../img/profile/cross.svg";
 import { setCurrentWorkout } from "../../store/reducers/mainReducers";
 

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { logoutUpdate } from "../../store/reducers/mainReducers";
+import { userUpdate } from "../../store/reducers/mainReducers";
 import userSelector from "../../store/selectors/selectors";
 import S from "./DropArrow.module.css";
 
@@ -12,8 +12,9 @@ function DropArrow() {
   const [dropList, setDropList] = useState(false);
 
   const clickToExitButton = () => {
-    dispatch(logoutUpdate(false));
-    navigate("/login");
+    dispatch(userUpdate({ logout: false }));
+    localStorage.removeItem("user");
+    navigate("/");
   };
 
   const clickToRouteInProfile = () => {
