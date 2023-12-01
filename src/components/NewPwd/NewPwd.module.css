@@ -1,6 +1,6 @@
 .newpwd_window {
     width: 366px;
-    height: 401px;
+    min-height: 401px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -65,6 +65,7 @@
     color: #FFF;
     border: none;
     margin-top: 12px;
+    margin-bottom: 47px;
 }
 
 .cross{
@@ -78,4 +79,9 @@
 
 .newpwd_header{
     position: relative;
+}
+
+.error {
+    color: red;
+    width: 278px;
 }

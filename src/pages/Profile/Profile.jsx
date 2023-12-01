@@ -4,11 +4,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import S from "./Profile.module.css";
 import logo from "../../img/logo__black.png";
-// import arrow from "../../img/arrow.png";
 import NewPwd from "../../components/NewPwd/NewPwd";
 import NewLogin from "../../components/NewLogin/NewLogin";
 import SelectWorkout from "../../components/SelectWorkout/SelectWorkout";
-import { useGetWorkoutsQuery } from "../../api/api";
+import { getUser, useGetWorkoutsQuery } from "../../api/api";
 import DropArrow from "../../components/DropArrow/DropArrow";
 
 function Profile() {
@@ -18,6 +17,7 @@ function Profile() {
   const [isTrainingOpen, setIsTrainingOpen] = useState(false);
   const [trainingType, setTrainingType] = useState(null);
   const userData = useSelector((store) => store.rootReducer.mainState.user);
+  getUser("admin").then((response) => console.log(response));
   return (
     <div className={S.profile_page}>
       <header className={S.header}>

@@ -11,12 +11,13 @@ function NewPwd({ setIsNpwOpen }) {
   const dispatch = useDispatch();
   const [newPassword, setNewPassword] = useState("");
   const [repeatNewPassword, setRepeatNewPassword] = useState("");
+  const [inputError, setInputError] = useState(null)
   const saveButton = () => {
     if (newPassword === repeatNewPassword && newPassword.length > 0) {
       setIsNpwOpen(false);
       dispatch(passwordUpdate(newPassword));
     } else {
-      alert("Поле пароль не должно быть пустым! Пароли должны совпадать!");
+      setInputError('Поле пароль не должно быть пустыми! Длинна пароля должна составлять минимум 5 символов. Пароли должны совпадать!');
     }
   };
   return (
@@ -48,6 +49,7 @@ function NewPwd({ setIsNpwOpen }) {
             setRepeatNewPassword(event.target.value);
           }}
         />
+        {inputError && <div className={S.error}>{inputError}</div>}
         <button
           type="button"
           className={S.form_button}

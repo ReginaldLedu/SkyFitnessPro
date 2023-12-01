@@ -6,16 +6,18 @@ import logo from "../../img/logo__black.png";
 import { loginUpdate } from "../../store/reducers/mainReducers";
 import S from "./NewLogin.module.css";
 import cross from "../../img/profile/cross.svg";
+import { safeString } from "../Helper/Helper";
 
 function NewLogin({ setIsNlogOpen }) {
   const dispatch = useDispatch();
   const [newLogin, setNewLogin] = useState("");
+  const [inputError, setInputError] = useState(null)
   const saveButton = () => {
-    if (newLogin.length > 0) {
+    if (newLogin.length > 4) {
       setIsNlogOpen(false);
-      dispatch(loginUpdate(newLogin));
+      dispatch(loginUpdate(safeString(newLogin)));
     } else {
-      alert("Поле логин не может быть пустым!");
+      setInputError('Поле логин не должно быть пустыми! Длинна логина должна составлять минимум 5 символов');
     }
   };
   return (
@@ -38,6 +40,7 @@ function NewLogin({ setIsNlogOpen }) {
             setNewLogin(event.target.value);
           }}
         />
+        {inputError && <div className={S.error}>{inputError}</div>}
         <button
           type="button"
           className={S.form_button}
