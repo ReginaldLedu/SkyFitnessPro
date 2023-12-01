@@ -7,10 +7,10 @@ import "./App.module.css";
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(courseUpdate(JSON.parse(localStorage.getItem("course"))));
-    dispatch(userUpdate(JSON.parse(localStorage.getItem("user"))));
-  }, []);
+   useEffect(() => {
+     dispatch(courseUpdate(JSON.parse(localStorage.getItem("course"))));
+     dispatch(userUpdate(JSON.parse(localStorage.getItem("user"))));
+   }, []);
 
   return <AppRoutes />;
 }

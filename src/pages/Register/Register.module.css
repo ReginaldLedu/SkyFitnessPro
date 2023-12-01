@@ -15,6 +15,7 @@
 }
 
 .register__wrapper {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -108,8 +109,12 @@
 }
 
 .error {
+  position: absolute;
+  top: 255px;
+  left: 0px;
   color: coral;
   font-weight: 400;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
+  width: 278px;
 }
