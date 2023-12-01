@@ -34,7 +34,6 @@
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-    /* 133.333% */
     letter-spacing: -0.05px;
     border-bottom: 1px solid #D0CECE;
     outline: none;
@@ -60,7 +59,6 @@
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-    /* 133.333% */
     letter-spacing: -0.05px;
     color: #FFF;
     border: none;
@@ -68,20 +66,27 @@
     margin-bottom: 47px;
 }
 
-.cross{
+.cross {
     height: 20px;
     width: 20px;
     position: absolute;
     top: 20px;
     left: 250px;
-    cursor: pointer;
+    background-image: url(../../img/exit.svg);
+    background-color: white;
 }
 
-.newpwd_header{
+.newpwd_header {
     position: relative;
 }
 
 .error {
-    color: red;
+    position: absolute;
+    top: 180px;
+    left: 40px;
+    color: coral;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center;
     width: 278px;
 }
