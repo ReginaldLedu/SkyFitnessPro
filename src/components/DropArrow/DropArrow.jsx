@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { userUpdate } from "../../store/reducers/mainReducers";
+import { uppString } from "../Helper/Helper";
 import userSelector from "../../store/selectors/selectors";
 import S from "./DropArrow.module.css";
-import { uppString } from "../Helper/Helper";
 
 function DropArrow() {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ function DropArrow() {
 
   const dropArrowClass = () => {
     if (location !== "/") return S.drop_container;
-    return S.drop_container_mainpage;
+    return S.drop_container_mainPage;
   };
 
   const clickToRouteInProfile = () => {
@@ -31,6 +31,7 @@ function DropArrow() {
   const clickToRouteInMain = () => {
     navigate("/");
   };
+
   const showUser = () => {
     const result =
       user.login.length > 11 ? `${user.login.slice(0, 11)}…` : user.login;

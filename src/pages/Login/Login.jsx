@@ -30,7 +30,7 @@ function Login() {
           userUpdate({
             login,
             password,
-            logout: true,            
+            logout: true,
           }),
         );
         localStorage.setItem(

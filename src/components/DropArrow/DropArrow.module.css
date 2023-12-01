@@ -1,5 +1,5 @@
 .drop_container,
-.drop_container_mainpage {
+.drop_container_mainPage {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
@@ -11,9 +11,11 @@
   cursor: pointer;
   position: relative;
 }
-.drop_container_mainpage {
+
+.drop_container_mainPage {
   color: white;
 }
+
 .drop_title {
   display: flex;
   flex-wrap: nowrap;
