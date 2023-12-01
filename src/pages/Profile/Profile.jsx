@@ -1,15 +1,14 @@
-/* eslint-disable dot-notation */
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import S from "./Profile.module.css";
-import logo from "../../img/logo__black.png";
-// import arrow from "../../img/arrow.png";
-import NewPwd from "../../components/NewPwd/NewPwd";
-import NewLogin from "../../components/NewLogin/NewLogin";
-import SelectWorkout from "../../components/SelectWorkout/SelectWorkout";
 import { useGetWorkoutsQuery } from "../../api/api";
+import SelectWorkout from "../../components/SelectWorkout/SelectWorkout";
+import userSelector from "../../store/selectors/selectors";
 import DropArrow from "../../components/DropArrow/DropArrow";
+import NewLogin from "../../components/NewLogin/NewLogin";
+import NewPwd from "../../components/NewPwd/NewPwd";
+import logo from "../../img/logo__black.png";
+import S from "./Profile.module.css";
 
 function Profile() {
   const { data = [] } = useGetWorkoutsQuery();
@@ -17,7 +16,8 @@ function Profile() {
   const [isNlogOpen, setIsNlogOpen] = useState(false);
   const [isTrainingOpen, setIsTrainingOpen] = useState(false);
   const [trainingType, setTrainingType] = useState(null);
-  const userData = useSelector((store) => store.rootReducer.mainState.user);
+  const userData = useSelector(userSelector);
+
   return (
     <div className={S.profile_page}>
       <header className={S.header}>

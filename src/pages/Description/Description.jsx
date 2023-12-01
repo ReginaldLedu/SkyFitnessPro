@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -80,7 +79,9 @@ function Description() {
         <div className={S.progress}>
           <div className={S.progress__box}>
             <h2 className={S.progress__title}>Вы успешно записались!</h2>
-            <button className={S.exit__button} onClick={signUp} type="button" />
+            <button className={S.exit__button} onClick={signUp} type="button">
+              {}
+            </button>
           </div>
         </div>
       )}

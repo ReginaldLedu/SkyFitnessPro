@@ -1,4 +1,5 @@
-.drop_container {
+.drop_container,
+.drop_container_mainPage {
   display: flex;
   flex-wrap: nowrap;
   justify-content: flex-end;
@@ -11,6 +12,10 @@
   position: relative;
 }
 
+.drop_container_mainPage {
+  color: white;
+}
+
 .drop_title {
   display: flex;
   flex-wrap: nowrap;
@@ -18,7 +23,7 @@
   align-items: center;
   gap: 1rem;
   flex-direction: row;
-  color: black;
+  /* color: black; */
 }
 
 .drop_circle {
