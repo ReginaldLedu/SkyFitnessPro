@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import S from "./SelectWorkout.module.css";
 import cross from "../../img/profile/cross.svg";
 import { setCurrentWorkout } from "../../store/reducers/mainReducers";
@@ -22,16 +23,24 @@ function SelectWorkout({ setIsTrainingOpen, data, type }) {
         <p className={S.sw_window__header}>Выберите тренировку</p>
       </div>
       {data[type].map((el) => (
-        <div className={S.items_list} onClick={() => dispatch(setCurrentWorkout(el))}>
-          <div className={S.item}>
-            <p className={S.item__header}>{el.title.split("/", 1)}</p>{" "}
-            {el.title.split("/").length > 1 && (
-              <p className={S.item__text}>
-                {el.title.split("/").slice(1, 3).join("/")}
-              </p>
-            )}
-          </div>{" "}
-        </div>
+        <NavLink
+          to="/workout"
+          style={{ textDecoration: "none", color: "inherit" }}
+        >
+          <div
+            className={S.items_list}
+            onClick={() => dispatch(setCurrentWorkout(el))}
+          >
+            <div className={S.item}>
+              <p className={S.item__header}>{el.title.split("/", 1)}</p>{" "}
+              {el.title.split("/").length > 1 && (
+                <p className={S.item__text}>
+                  {el.title.split("/").slice(1, 3).join("/")}
+                </p>
+              )}
+            </div>{" "}
+          </div>
+        </NavLink>
       ))}
     </div>
   );
