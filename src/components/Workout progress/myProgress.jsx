@@ -1,10 +1,12 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+
 import { useDispatch, useSelector } from "react-redux";
 import { backToInitial, setProgress } from "../../store/reducers/mainReducers";
 import { workoutSelector } from "../../store/selectors/selectors";
 import S from "./myProgress.module.css";
 
 function MyProgress() {
+  
   const dispatch = useDispatch();
   const submitProgressSwitch = () => {
     dispatch(backToInitial());
@@ -18,7 +20,7 @@ function MyProgress() {
     dispatch(setProgress(obj));
   }
 
-  function userProgressCreation(exerciseTitleArr, inputValue) {
+  function userProgressCreation(exerciseTitleArr, inputValue) {    
     const arrForCount = [];
     arrForCount.push(exerciseTitleArr[0]);
     arrForCount.push(parseInt(inputValue, 10));
@@ -32,6 +34,7 @@ function MyProgress() {
     obj[key] = `${userProgressPercentage}%`;
     userProgressToRedux(obj);
   }
+  
 
   return (
     <section className={S.myProgress}>
@@ -46,9 +49,9 @@ function MyProgress() {
             </p>
             <input
               onBlur={(event) => userProgressCreation(item, event.target.value)}
-              type="number"
+              type="number"              
               className={S.myProgress__answer}
-              placeholder="Введите значение"
+              placeholder="Введите значение"                
             />
           </div>
         ))}
