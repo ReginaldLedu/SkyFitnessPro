@@ -1,14 +1,66 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import DropArrow from "../../components/DropArrow/DropArrow";
 import WorkoutExercises from "../../components/WorkoutExercises/WorkoutExercises";
 import MyProgress from "../../components/Workout progress/myProgress";
+import WorkoutExerciseScales from "../../components/WorkoutExerciseScales/WorkoutExerciseScales";
 import S from "./Workout.module.css";
+import {
+  setExerciseTitles,
+  setInitialProgress,
+  setTargetProgress,
+  /* setUserProgress, */
+} from "../../store/reducers/mainReducers";
 
 function Workout() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setInitialProgress());
+  }, []);
+  const currentExercises = useSelector(
+    (state) => state.rootReducer.mainState.currentWorkout.exercises,
+  );
+
   const completeProgressSwitcher = useSelector(
     (state) => state.rootReducer.mainState.initialState,
   );
+
+  const currentTitle = useSelector(
+    (state) => state.rootReducer.mainState.currentWorkout.title,
+  );
+  const mainTitle = useSelector(
+    (state) => state.rootReducer.mainState.currentWorkout.name,
+  );
+
+  function exerciseTitlesToReducer(array) {
+    dispatch(setExerciseTitles(array));
+  }
+  function targetProgressToReducer(object) {
+    dispatch(setTargetProgress(object));
+  }
+  /* function userInitialProgressToReducer(object) {
+    const exerciseTitles = object.map((item) => item.split("(", 1));
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < exerciseTitles.length; i++) {
+      exerciseTitles[i].push(0);
+    }
+    dispatch(setUserProgress(exerciseTitles));
+  } */
+
+  useEffect(() => {
+    const arr = currentExercises.map((item) => item.split("(", 2));
+    const arr2 = arr.map((item) => item[1].split(" ", 1));
+    const targetProgressQuantity = arr2.map((item) => parseInt(item[0], 10));
+    const exerciseTitles = currentExercises.map((item) => item.split("(", 1));
+    exerciseTitlesToReducer(currentExercises.map((item) => item.split("(", 1)));
+    // eslint-disable-next-line no-plusplus
+    for (let i = 0; i < exerciseTitles.length; i++) {
+      exerciseTitles[i].push(targetProgressQuantity[i]);
+    }
+    targetProgressToReducer(Object.fromEntries(exerciseTitles));
+    /* userInitialProgressToReducer(currentExercises); */
+  }, []);
 
   return (
     <>
@@ -19,10 +71,8 @@ function Workout() {
         </div>
       </header>
       <main className={S.workout__auth}>
-        <h1 className={S["workout-authorized__title"]}>Йога</h1>
-        <h2 className={S["workout-authorized__path"]}>
-          Красота и здоровье / Йога на каждый день / 2 день
-        </h2>
+        <h1 className={S["workout-authorized__title"]}>{mainTitle}</h1>
+        <h2 className={S["workout-authorized__path"]}>{currentTitle}</h2>
         <div className={S["workout-authorized__video"]}>
           <iframe
             width="1160"
@@ -38,30 +88,7 @@ function Workout() {
         {completeProgressSwitcher === false ? " " : <MyProgress />}
         <section className={S["workout-authorized__info"]}>
           <WorkoutExercises />
-          <div className={S["workout-authorized__progress"]}>
-            <div className={S.progress__wrapper}>
-              <h3 className={S.progress__title}>
-                Мой прогресс по тренировке 2:
-              </h3>
-              <div className={S.progress__item}>
-                <p className={S.progress__text}>Наклоны вперед</p>
-                <div className={S.progress__scale}>
-                  <div className={S.progress__scale_inner} />
-                </div>
-              </div>
-              <div className={S.progress__item}>
-                <p className={S.progress__text}>Наклоны назад</p>
-                <div className={S.progress__scale} />
-              </div>
-              <div className={S.progress__item}>
-                <p className={S.progress__text}>
-                  Поднятие ног, <br />
-                  согнутых в коленях
-                </p>
-                <div className={S.progress__scale} />
-              </div>
-            </div>
-          </div>
+          <WorkoutExerciseScales />
         </section>
       </main>
     </>
