@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { addUser, getUser } from "../../api/api";
 import { safeString } from "../../components/Helper/Helper";
-import { userUpdate } from "../../store/reducers/mainReducers";
+import { logoutUpdate, userUpdate } from "../../store/reducers/mainReducers";
 import S from "./Register.module.css";
 
 function Register() {
@@ -48,7 +48,7 @@ function Register() {
         userUpdate({
           login: safeLogin,
           password: safePassword,
-          logout: true,
+          courses: {},
         }),
       );
       localStorage.setItem(
@@ -56,9 +56,11 @@ function Register() {
         JSON.stringify({
           login: safeLogin,
           password: safePassword,
-          logout: true,
+          courses: {},
         }),
       );
+      dispatch(logoutUpdate(true));
+      localStorage.setItem("logout", JSON.stringify(true));
       navigate("/");
     } catch (error) {
       setError(error.message);

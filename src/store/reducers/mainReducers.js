@@ -3,9 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   initialState: false,
-  user: {
-    logout: false,
-  },
+  logout: false,
   course: {
     name: "Йога",
     conditions: [
@@ -31,9 +29,21 @@ const initialState = {
       "Наклон вниз, левая рука тянется вверх (10 повторений)",
       "Перенос веса с ноги на ногу в положении сидя (20 повторений)",
     ],
+    exerciseTitles: [
+      "Правильное дыхание",
+      "Наклон вниз, правая рука тянется вверх",
+      "Наклон вниз, левая рука тянется вверх",
+      "Перенос веса с ноги на ногу в положении сидя",
+    ],
     link: "Ewm-Bfg5ncg",
     name: "Стретчинг",
     title: "Основы стретчинга",
+    targetProgress: {
+      "Правильное дыхание": 4,
+      "Наклон вниз, правая рука тянется вверх": 6,
+      "Наклон вниз, левая рука тянется вверх": 7,
+      "Перенос веса с ноги на ногу в положении сидя": 8,
+    },
   },
 };
 
@@ -50,9 +60,6 @@ const mainReducers = createSlice({
     userUpdate: (state, action) => {
       state.user = action.payload;
     },
-    idUpdate: (state, action) => {
-      state.user.id = action.payload;
-    },
     loginUpdate: (state, action) => {
       state.user.login = action.payload;
     },
@@ -60,13 +67,28 @@ const mainReducers = createSlice({
       state.user.password = action.payload;
     },
     logoutUpdate: (state, action) => {
-      state.user.logout = action.payload;
+      state.logout = action.payload;
+    },
+    userCoursesUpdate: (state, action) => {
+      state.user.courses = action.payload;
     },
     courseUpdate: (state, action) => {
       state.course = action.payload;
     },
     setCurrentWorkout: (state, action) => {
       state.currentWorkout = action.payload;
+    },
+    setExerciseTitles: (state, action) => {
+      state.currentWorkout.exerciseTitles = action.payload;
+    },
+    setTargetProgress: (state, action) => {
+      state.currentWorkout.targetProgress = action.payload;
+    },
+    setProgress: (state, action) => {
+      state.userProgress.push(action.payload);
+    },
+    setInitialProgress: (state) => {
+      state.userProgress = [];
     },
   },
 });
@@ -75,11 +97,16 @@ export const {
   submitProgress,
   backToInitial,
   userUpdate,
-  idUpdate,
   loginUpdate,
   passwordUpdate,
   logoutUpdate,
+  userCoursesUpdate,
   courseUpdate,
   setCurrentWorkout,
+  setExerciseTitles,
+  setTargetProgress,
+  setUserProgress,
+  setProgress,
+  setInitialProgress,
 } = mainReducers.actions;
 export default mainReducers;
