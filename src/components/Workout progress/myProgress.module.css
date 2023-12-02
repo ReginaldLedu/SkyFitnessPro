@@ -1,6 +1,6 @@
 .myProgress {
   width: 444px;
-  height: 554px;
+  padding: 15px;
   border-radius: 12px;
   background-color: #f2f2f2;
   border: 1px black solid;
@@ -56,6 +56,8 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .myProgress__submit {
+  display: block;
+  margin: auto;
   width: 278px;
   height: 52px;
   background-color: #580ea2;
@@ -64,4 +66,11 @@ input[type="number"]::-webkit-outer-spin-button {
   border: none;
   text-align: center;
   margin-top: 40px;
+}
+.cross {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background-image: url(../../img/exit.svg);
 }
