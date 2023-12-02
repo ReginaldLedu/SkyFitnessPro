@@ -3,10 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   initialState: false,
-  user: {
-    logout: false,
-  },
-  userProgress: [],
+  logout: false,
   course: {
     name: "Йога",
     conditions: [
@@ -63,9 +60,6 @@ const mainReducers = createSlice({
     userUpdate: (state, action) => {
       state.user = action.payload;
     },
-    idUpdate: (state, action) => {
-      state.user.id = action.payload;
-    },
     loginUpdate: (state, action) => {
       state.user.login = action.payload;
     },
@@ -73,7 +67,10 @@ const mainReducers = createSlice({
       state.user.password = action.payload;
     },
     logoutUpdate: (state, action) => {
-      state.user.logout = action.payload;
+      state.logout = action.payload;
+    },
+    userCoursesUpdate: (state, action) => {
+      state.user.courses = action.payload;
     },
     courseUpdate: (state, action) => {
       state.course = action.payload;
@@ -100,10 +97,10 @@ export const {
   submitProgress,
   backToInitial,
   userUpdate,
-  idUpdate,
   loginUpdate,
   passwordUpdate,
   logoutUpdate,
+  userCoursesUpdate,
   courseUpdate,
   setCurrentWorkout,
   setExerciseTitles,

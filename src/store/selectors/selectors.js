@@ -7,6 +7,8 @@ const courseSelector = (store) => mainSelector(store)?.course || [];
 const workoutSelector = (store) => mainSelector(store)?.currentWorkout || [];
 const progressSelector = (store) => mainSelector(store)?.userProgress || [];
 const initialStateSelector = (store) => mainSelector(store)?.initialState || [];
+const userCoursesSelector = (store) => mainSelector(store)?.user.courses || [];
+const logoutSelector = (store) => mainSelector(store)?.logout || [];
 
 export default userSelector;
 
@@ -21,4 +23,6 @@ export {
   workoutSelector,
   progressSelector,
   initialStateSelector,
+  userCoursesSelector,
+  logoutSelector,
 };

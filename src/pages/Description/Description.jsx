@@ -1,20 +1,102 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-case-declarations */
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import userSelector, { courseSelector } from "../../store/selectors/selectors";
+import {
+  addCoursesBody_flex,
+  addCoursesDance_fitness,
+  addCoursesStep_aerobics,
+  addCoursesStretching,
+  addCoursesYoga,
+  getProgress,
+  getUser,
+} from "../../api/api";
+import { userCoursesUpdate } from "../../store/reducers/mainReducers";
 import EnterButton from "../../components/EnterButton/EnterButton";
-import S from "./Description.module.css";
 import DropArrow from "../../components/DropArrow/DropArrow";
+import S from "./Description.module.css";
 
 function Description() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const course = useSelector(courseSelector);
+  const logout = useSelector((state) => state.rootReducer.mainState.logout);
   const user = useSelector(userSelector);
   const [singUpCheck, setSingUpCheck] = useState(false);
+  const [coursesCheck, setCoursesCheck] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
-  const signUp = () => {
-    if (!user.logout) navigate("/login");
-    setSingUpCheck(!singUpCheck);
+  const exit = () => {
+    setSingUpCheck((prev) => !prev);
+  };
+
+  const signUp = async () => {
+    if (!logout) navigate("/login");
+
+    switch (course.name) {
+      case "Йога":
+        if (user.courses.yoga) {
+          setCoursesCheck((prev) => !prev);
+          setDisabled((prev) => !prev);
+          return;
+        }
+        await addCoursesYoga({
+          login: user.login,
+          yoga: await getProgress("yoga"),
+        });
+        break;
+      case "Стретчинг":
+        if (user.courses.stretching) {
+          setCoursesCheck((prev) => !prev);
+          setDisabled((prev) => !prev);
+          return;
+        }
+        await addCoursesStretching({
+          login: user.login,
+          stretching: await getProgress("stretching"),
+        });
+        break;
+      case "Танцевальный фитнес":
+        if (user.courses.dance_fitness) {
+          setCoursesCheck((prev) => !prev);
+          setDisabled((prev) => !prev);
+          return;
+        }
+        await addCoursesDance_fitness({
+          login: user.login,
+          dance_fitness: await getProgress("dance_fitness"),
+        });
+        break;
+      case "Степ-аэробика":
+        if (user.courses.step_aerobics) {
+          setCoursesCheck((prev) => !prev);
+          setDisabled((prev) => !prev);
+          return;
+        }
+        await addCoursesStep_aerobics({
+          login: user.login,
+          step_aerobics: await getProgress("step_aerobics"),
+        });
+        break;
+      case "Бодифлекс":
+        if (user.courses.body_flex) {
+          setCoursesCheck((prev) => !prev);
+          setDisabled((prev) => !prev);
+          return;
+        }
+        await addCoursesBody_flex({
+          login: user.login,
+          body_flex: await getProgress("body_flex"),
+        });
+        break;
+      default:
+        break;
+    }
+    const newDataUser = await getUser(user.login);
+    dispatch(userCoursesUpdate(newDataUser.courses));
+    setSingUpCheck((prev) => !prev);
   };
 
   return (
@@ -22,7 +104,7 @@ function Description() {
       {!singUpCheck ? " " : <div className={S.cover} />}
       <header className={S.header}>
         <Link to="/" className={S.header__logo} />
-        {!user.logout ? <EnterButton /> : <DropArrow />}
+        {!logout ? <EnterButton /> : <DropArrow />}
       </header>
       <div className={S.description}>
         <section className={S.description__logo}>
@@ -79,7 +161,7 @@ function Description() {
         <div className={S.progress}>
           <div className={S.progress__box}>
             <h2 className={S.progress__title}>Вы успешно записались!</h2>
-            <button className={S.exit__button} onClick={signUp} type="button">
+            <button className={S.exit__button} onClick={exit} type="button">
               {}
             </button>
           </div>
@@ -91,8 +173,15 @@ function Description() {
           с вами, поможем с выбором направления и тренера, <br />с которым
           тренировки принесут здоровье и радость!
         </p>
-        <button onClick={signUp} type="button" className={S.footer__button}>
-          Записаться на тренировку
+        <button
+          disabled={disabled}
+          onClick={signUp}
+          type="button"
+          className={S.footer__button}
+        >
+          {coursesCheck
+            ? "Вы уже записаны на этот курс"
+            : "Записаться на тренировку"}
         </button>
       </footer>
     </div>
