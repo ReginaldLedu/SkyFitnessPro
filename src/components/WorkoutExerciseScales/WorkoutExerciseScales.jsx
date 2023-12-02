@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
+import {
+  progressSelector,
+  workoutSelector,
+} from "../../store/selectors/selectors";
 import S from "../../pages/Workout/Workout.module.css";
 
 export default function WorkoutExerciseScales() {
-  const userProgress = useSelector(
-    (state) => state.rootReducer.mainState.userProgress,
-  );
-  const currentExercises = useSelector(
-    (state) => state.rootReducer.mainState.currentWorkout.exercises,
-  );
+  const userProgress = useSelector(progressSelector);
+  const workout = useSelector(workoutSelector);
   const colors = [
     { common: "#EDECFF", inner: "#565EEF" },
     { common: "#FFF2E0", inner: "#FF6D00" },
@@ -15,8 +15,8 @@ export default function WorkoutExerciseScales() {
     { common: "#EDECFF", inner: "#565EEF" },
     { common: "#FFF2E0", inner: "#FF6D00" },
     { common: "#F9EBFF", inner: "#9A48F1" },
-    
   ];
+
   return (
     <div className={S["workout-authorized__progress"]}>
       <div className={S.progress__wrapper}>
@@ -50,7 +50,7 @@ export default function WorkoutExerciseScales() {
                 </div>
               </>
             ))
-          : currentExercises.map((item) => (
+          : workout.exercises.map((item) => (
               <>
                 {" "}
                 <div className={S.progress__item}>

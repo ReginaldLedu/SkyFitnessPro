@@ -8,13 +8,12 @@ import stretch from "../../img/main/stretch.png";
 import danceFitness from "../../img/main/danceFitness.svg";
 import stepAerobics from "../../img/main/stepAerobics.svg";
 import bodyFlex from "../../img/main/bodyFlex.png";
-import userSelector from "../../store/selectors/selectors";
 import DropArrow from "../../components/DropArrow/DropArrow";
 import EnterButton from "../../components/EnterButton/EnterButton";
 import S from "./Main.module.css";
 
 function Main() {
-  const user = useSelector(userSelector);
+  const logout = useSelector((state) => state.rootReducer.mainState.logout);
   const { data = [] } = useGetCoursesQuery();
 
   const dispatch = useDispatch();
@@ -60,7 +59,7 @@ function Main() {
     <div className={S.container}>
       <div className={S.top__row}>
         <Link to="/" className={S.logo__container} />
-        {!user.logout ? <EnterButton /> : <DropArrow />}
+        {!logout ? <EnterButton /> : <DropArrow />}
         <div className={S.sticker}>
           <img alt="sticker" src={sticker} />
         </div>

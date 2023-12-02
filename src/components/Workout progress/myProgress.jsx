@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-
 import { useDispatch, useSelector } from "react-redux";
 import { backToInitial, setProgress } from "../../store/reducers/mainReducers";
+import { workoutSelector } from "../../store/selectors/selectors";
 import S from "./myProgress.module.css";
 
 function MyProgress() {
@@ -9,12 +9,11 @@ function MyProgress() {
   const submitProgressSwitch = () => {
     dispatch(backToInitial());
   };
-  const exerciseTitlesFromRedux = useSelector(
-    (state) => state.rootReducer.mainState.currentWorkout.exerciseTitles,
-  );
+  const workout = useSelector(workoutSelector);
   const targetProgressFromRedux = useSelector(
     (state) => state.rootReducer.mainState.currentWorkout.targetProgress,
   );
+
   function userProgressToRedux(obj) {
     dispatch(setProgress(obj));
   }
@@ -41,14 +40,13 @@ function MyProgress() {
     }
   }
 
-  console.log(userProgress);
   return (
     <section className={S.myProgress}>
       {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div className={S.cross} onClick={submitProgressSwitch} />
       <div className={S.myProgress__wrapper}>
         <h1 className={S.myProgress__title}>Мой прогресс</h1>
-        {exerciseTitlesFromRedux.map((item) => (
+        {workout.exerciseTitles.map((item) => (
           <div className={S.myProgress__item}>
             <p className={S.myProgress__question}>
               {`Сколько раз Вы сделали ${item}?`}

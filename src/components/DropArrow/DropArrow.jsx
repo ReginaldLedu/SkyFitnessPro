@@ -1,20 +1,29 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
-import { userUpdate } from "../../store/reducers/mainReducers";
+import { logoutUpdate, userUpdate } from "../../store/reducers/mainReducers";
+import { uppString } from "../Helper/Helper";
 import userSelector from "../../store/selectors/selectors";
 import S from "./DropArrow.module.css";
 
 function DropArrow() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation().pathname;
   const user = useSelector(userSelector);
   const [dropList, setDropList] = useState(false);
 
   const clickToExitButton = () => {
-    dispatch(userUpdate({ logout: false }));
+    dispatch(logoutUpdate(false));
+    dispatch(userUpdate())
     localStorage.removeItem("user");
+    localStorage.removeItem("logout");
     navigate("/");
+  };
+
+  const dropArrowClass = () => {
+    if (location !== "/") return S.drop_container;
+    return S.drop_container_mainPage;
   };
 
   const clickToRouteInProfile = () => {
@@ -25,9 +34,15 @@ function DropArrow() {
     navigate("/");
   };
 
+  const showUser = () => {
+    const result =
+      user.login.length > 11 ? `${user.login.slice(0, 11)}…` : user.login;
+    return uppString(result);
+  };
+
   return (
     <div
-      className={S.drop_container}
+      className={dropArrowClass()}
       aria-hidden="true"
       tabIndex="-1"
       onMouseLeave={() => setDropList(false)}
@@ -39,9 +54,7 @@ function DropArrow() {
         onClick={() => setDropList((prev) => !prev)}
       >
         <div className={S.drop_circle} />
-        <div className={S.drop_username}>
-          {user.login.length > 11 ? `${user.login.slice(0, 11)}…` : user.login}
-        </div>
+        <div className={S.drop_username}>{showUser()}</div>
         <div className={S.drop_arrow}>{String.fromCodePoint(9013)}</div>
       </div>
       {dropList ? (
