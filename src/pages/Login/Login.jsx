@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { userUpdate } from "../../store/reducers/mainReducers";
+import { logoutUpdate, userUpdate } from "../../store/reducers/mainReducers";
 import { getUser } from "../../api/api";
 import S from "./Login.module.css";
 
@@ -30,13 +30,19 @@ function Login() {
           userUpdate({
             login,
             password,
-            logout: true,
+            courses: user?.courses || {},
           }),
         );
         localStorage.setItem(
           "user",
-          JSON.stringify({ login, password, logout: true }),
+          JSON.stringify({
+            login,
+            password,
+            courses: user?.courses || {},
+          }),
         );
+        dispatch(logoutUpdate(true));
+        localStorage.setItem("logout", JSON.stringify(true));
         navigate("/profile");
       } else {
         throw new Error("Пароль или логин введены не верно");
