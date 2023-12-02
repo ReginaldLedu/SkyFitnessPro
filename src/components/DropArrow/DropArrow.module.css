@@ -67,6 +67,7 @@
   text-align: right;
   overflow: hidden;
   width: 130px;
+  height: 0px;
 }
 
 .drop_list_open {
