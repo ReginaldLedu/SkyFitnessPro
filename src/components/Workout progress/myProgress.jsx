@@ -18,6 +18,9 @@ function MyProgress() {
   function userProgressToRedux(obj) {
     dispatch(setProgress(obj));
   }
+  const userProgress = useSelector(
+    (state) => state.rootReducer.mainState.userProgress,
+  );
 
   function userProgressCreation(exerciseTitleArr, inputValue) {
     const arrForCount = [];
@@ -31,11 +34,13 @@ function MyProgress() {
     const obj = {};
     // eslint-disable-next-line prefer-destructuring
     obj[key] = `${userProgressPercentage}%`;
-    userProgressToRedux(obj);
+    const repeat = userProgress.find((item) => Object.keys(item) === key);
+    console.log(repeat);
+    if (repeat === undefined) {
+      userProgressToRedux(obj);
+    }
   }
-  const userProgress = useSelector(
-    (state) => state.rootReducer.mainState.userProgress,
-  );
+
   console.log(userProgress);
   return (
     <section className={S.myProgress}>
