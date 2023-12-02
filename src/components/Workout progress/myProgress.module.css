@@ -72,5 +72,5 @@ input[type="number"]::-webkit-outer-spin-button {
   top: 20px;
   right: 20px;
   padding: 10px;
-  background-image: url(../../img/description/exit.svg);
+  background-image: url(../../img/exit.svg);
 }

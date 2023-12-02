@@ -1,65 +1,49 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import DropArrow from "../../components/DropArrow/DropArrow";
-import WorkoutExercises from "../../components/WorkoutExercises/WorkoutExercises";
-import MyProgress from "../../components/Workout progress/myProgress";
-import WorkoutExerciseScales from "../../components/WorkoutExerciseScales/WorkoutExerciseScales";
-import S from "./Workout.module.css";
+import { workoutSelector } from "../../store/selectors/selectors";
 import {
   setExerciseTitles,
   setInitialProgress,
   setTargetProgress,
-  /* setUserProgress, */
 } from "../../store/reducers/mainReducers";
+import WorkoutExerciseScales from "../../components/WorkoutExerciseScales/WorkoutExerciseScales";
+import WorkoutExercises from "../../components/WorkoutExercises/WorkoutExercises";
+import MyProgress from "../../components/Workout progress/myProgress";
+import DropArrow from "../../components/DropArrow/DropArrow";
+import S from "./Workout.module.css";
 
 function Workout() {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(setInitialProgress());
-  }, []);
-  const currentExercises = useSelector(
-    (state) => state.rootReducer.mainState.currentWorkout.exercises,
-  );
-
+  const workout = useSelector(workoutSelector);
   const completeProgressSwitcher = useSelector(
     (state) => state.rootReducer.mainState.initialState,
-  );
-
-  const currentTitle = useSelector(
-    (state) => state.rootReducer.mainState.currentWorkout.title,
-  );
-  const mainTitle = useSelector(
-    (state) => state.rootReducer.mainState.currentWorkout.name,
   );
 
   function exerciseTitlesToReducer(array) {
     dispatch(setExerciseTitles(array));
   }
+
   function targetProgressToReducer(object) {
     dispatch(setTargetProgress(object));
   }
-  /* function userInitialProgressToReducer(object) {
-    const exerciseTitles = object.map((item) => item.split("(", 1));
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < exerciseTitles.length; i++) {
-      exerciseTitles[i].push(0);
-    }
-    dispatch(setUserProgress(exerciseTitles));
-  } */
 
   useEffect(() => {
-    const arr = currentExercises.map((item) => item.split("(", 2));
+    dispatch(setInitialProgress());
+    const arr = workout.exercises.map((item) => item.split("(", 2));
     const arr2 = arr.map((item) => item[1].split(" ", 1));
     const targetProgressQuantity = arr2.map((item) => parseInt(item[0], 10));
-    const exerciseTitles = currentExercises.map((item) => item.split("(", 1));
-    exerciseTitlesToReducer(currentExercises.map((item) => item.split("(", 1)));
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < exerciseTitles.length; i++) {
+    const exerciseTitles = workout.exercises.map((item) => item.split("(", 1));
+
+    exerciseTitlesToReducer(
+      workout.exercises.map((item) => item.split("(", 1)),
+    );
+
+    for (let i = 0; i < exerciseTitles.length; i += 1) {
       exerciseTitles[i].push(targetProgressQuantity[i]);
     }
+
     targetProgressToReducer(Object.fromEntries(exerciseTitles));
-    /* userInitialProgressToReducer(currentExercises); */
   }, []);
 
   return (
@@ -71,13 +55,13 @@ function Workout() {
         </div>
       </header>
       <main className={S.workout__auth}>
-        <h1 className={S["workout-authorized__title"]}>{mainTitle}</h1>
-        <h2 className={S["workout-authorized__path"]}>{currentTitle}</h2>
+        <h1 className={S["workout-authorized__title"]}>{workout.name}</h1>
+        <h2 className={S["workout-authorized__path"]}>{workout.title}</h2>
         <div className={S["workout-authorized__video"]}>
           <iframe
             width="1160"
             height="639"
-            src="https://www.youtube.com/embed/WxFz-4YsiEE?si=QU82bMEoBf2TGEN-"
+            src={`https://www.youtube.com/embed/${workout.link}`}
             title="video"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

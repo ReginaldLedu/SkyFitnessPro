@@ -87,7 +87,6 @@ const mainReducers = createSlice({
     setTargetProgress: (state, action) => {
       state.currentWorkout.targetProgress = action.payload;
     },
-
     setProgress: (state, action) => {
       state.userProgress.push(action.payload);
     },
