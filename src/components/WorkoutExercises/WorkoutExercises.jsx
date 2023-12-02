@@ -10,6 +10,9 @@ function WorkoutExercises() {
   const completeProgressSwitcher = useSelector(
     (state) => state.rootReducer.mainState.initialState,
   );
+  const currentExercises = useSelector(
+    (state) => state.rootReducer.mainState.currentWorkout.exercises,
+  );
 
   const writeMyProgress = () => {
     if (completeProgressSwitcher === false) {
@@ -23,12 +26,9 @@ function WorkoutExercises() {
     <div className={S["workout-authorized__exercises"]}>
       <h3 className={S["workout-authorized__exercises-title"]}>Упражнения</h3>
       <ul className={S["workout-authorized__list"]}>
-        <li className={S.exercises__item}>Наклон вперед (10 повторений)</li>
-        <li className={S.exercises__item}>Наклон назад (10 повторений)</li>
-        <li className={S.exercises__item}>
-          Поднятие ног, согнутых в коленях <br />
-          (5 повторений)
-        </li>
+        {currentExercises.map((item) => (
+          <li className={S.exercises__item}>{item}</li>
+        ))}
       </ul>
       <button
         onClick={writeMyProgress}
