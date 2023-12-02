@@ -15,15 +15,7 @@ export default function WorkoutExerciseScales() {
     { common: "#EDECFF", inner: "#565EEF" },
     { common: "#FFF2E0", inner: "#FF6D00" },
     { common: "#F9EBFF", inner: "#9A48F1" },
-    { common: "#EDECFF", inner: "#565EEF" },
-    { common: "#FFF2E0", inner: "#FF6D00" },
-    { common: "#F9EBFF", inner: "#9A48F1" },
-    { common: "#EDECFF", inner: "#565EEF" },
-    { common: "#FFF2E0", inner: "#FF6D00" },
-    { common: "#F9EBFF", inner: "#9A48F1" },
-    { common: "#EDECFF", inner: "#565EEF" },
-    { common: "#FFF2E0", inner: "#FF6D00" },
-    { common: "#F9EBFF", inner: "#9A48F1" },
+    
   ];
   return (
     <div className={S["workout-authorized__progress"]}>
