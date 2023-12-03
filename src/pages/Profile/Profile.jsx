@@ -1,23 +1,21 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { useGetWorkoutsQuery } from "../../api/api";
 import SelectWorkout from "../../components/SelectWorkout/SelectWorkout";
 import userSelector from "../../store/selectors/selectors";
 import DropArrow from "../../components/DropArrow/DropArrow";
 import NewLogin from "../../components/NewLogin/NewLogin";
 import NewPwd from "../../components/NewPwd/NewPwd";
+// import { useGetWorkoutsQuery } from "../../api/api";
 import logo from "../../img/logo__black.png";
 import S from "./Profile.module.css";
 
 function Profile() {
-  const { data = [] } = useGetWorkoutsQuery();
   const [isNpwOpen, setIsNpwOpen] = useState(false);
   const [isNlogOpen, setIsNlogOpen] = useState(false);
   const [isTrainingOpen, setIsTrainingOpen] = useState(false);
   const [trainingType, setTrainingType] = useState(null);
   const userData = useSelector(userSelector);
-
   return (
     <div className={S.profile_page}>
       <header className={S.header}>
@@ -30,7 +28,6 @@ function Profile() {
         {isTrainingOpen && (
           <SelectWorkout
             setIsTrainingOpen={setIsTrainingOpen}
-            data={data}
             type={trainingType}
           />
         )}
@@ -68,51 +65,92 @@ function Profile() {
         <div className={S.mycourses_block}>
           <p className={S.mycourses_block__header}>Мой профиль</p>
           <div className={S.mycourses__items}>
-            <div className={S.mycourses__item_yoga}>
-              <p className={S.item_text}>Йога</p>
-              <button
-                className={S.item_button}
-                type="button"
-                onClick={() => {
-                  setIsNlogOpen(false);
-                  setIsNpwOpen(false);
-                  setIsTrainingOpen(!isTrainingOpen);
-                  setTrainingType("yoga");
-                }}
-              >
-                Перейти →
-              </button>
-            </div>
-            <div className={S.mycourses__item_strech}>
-              <p className={S.item_text}>Стретчинг</p>
-              <button
-                className={S.item_button}
-                type="button"
-                onClick={() => {
-                  setIsNlogOpen(false);
-                  setIsNpwOpen(false);
-                  setIsTrainingOpen(!isTrainingOpen);
-                  setTrainingType("stretching");
-                }}
-              >
-                Перейти →
-              </button>
-            </div>
-            <div className={S.mycourses__item_bflex}>
-              <p className={S.item_text}>Бодифлекс</p>
-              <button
-                className={S.item_button}
-                type="button"
-                onClick={() => {
-                  setIsNlogOpen(false);
-                  setIsNpwOpen(false);
-                  setIsTrainingOpen(!isTrainingOpen);
-                  setTrainingType("body_flex");
-                }}
-              >
-                Перейти →
-              </button>
-            </div>
+            {userData.courses.yoga && (
+              <div className={S.mycourses__item_yoga}>
+                <p className={S.item_text}>Йога</p>
+                <button
+                  className={S.item_button}
+                  type="button"
+                  onClick={() => {
+                    setIsNlogOpen(false);
+                    setIsNpwOpen(false);
+                    setIsTrainingOpen(!isTrainingOpen);
+                    setTrainingType("yoga");
+                  }}
+                >
+                  Перейти →
+                </button>
+              </div>
+            )}
+            {userData.courses.stretching && (
+              <div className={S.mycourses__item_strech}>
+                <p className={S.item_text}>Стретчинг</p>
+                <button
+                  className={S.item_button}
+                  type="button"
+                  onClick={() => {
+                    setIsNlogOpen(false);
+                    setIsNpwOpen(false);
+                    setIsTrainingOpen(!isTrainingOpen);
+                    setTrainingType("stretching");
+                  }}
+                >
+                  Перейти →
+                </button>
+              </div>
+            )}
+            {userData.courses.body_flex && (
+              <div className={S.mycourses__item_bflex}>
+                <p className={S.item_text}>Бодифлекс</p>
+                <button
+                  className={S.item_button}
+                  type="button"
+                  onClick={() => {
+                    setIsNlogOpen(false);
+                    setIsNpwOpen(false);
+                    setIsTrainingOpen(!isTrainingOpen);
+                    setTrainingType("body_flex");
+                  }}
+                >
+                  Перейти →
+                </button>
+              </div>
+            )}
+
+            {userData.courses.step_aerobics && (
+              <div className={S.mycourses__item_step}>
+                <p className={S.item_text}>Степ-аэробика</p>
+                <button
+                  className={S.item_button}
+                  type="button"
+                  onClick={() => {
+                    setIsNlogOpen(false);
+                    setIsNpwOpen(false);
+                    setIsTrainingOpen(!isTrainingOpen);
+                    setTrainingType("step_aerobics");
+                  }}
+                >
+                  Перейти →
+                </button>
+              </div>
+            )}
+            {userData.courses.dance_fitness && (
+              <div className={S.mycourses__item_dance}>
+                <p className={S.item_text}>Танцевальный фитнес</p>
+                <button
+                  className={S.item_button_dance}
+                  type="button"
+                  onClick={() => {
+                    setIsNlogOpen(false);
+                    setIsNpwOpen(false);
+                    setIsTrainingOpen(!isTrainingOpen);
+                    setTrainingType("dance_fitness");
+                  }}
+                >
+                  Перейти →
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>

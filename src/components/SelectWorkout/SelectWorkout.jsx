@@ -3,11 +3,13 @@
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { setCurrentWorkout } from "../../store/reducers/mainReducers";
+import { useGetWorkoutsQuery } from "../../api/api";
 import S from "./SelectWorkout.module.css";
 
-function SelectWorkout({ setIsTrainingOpen, data, type }) {
+function SelectWorkout({ setIsTrainingOpen, type }) {
   const dispatch = useDispatch();
-
+  const { data = [], isLoading } = useGetWorkoutsQuery();
+  console.log(data)
   return (
     <div className={S.sw_window}>
       <div className={S.sw_header}>
@@ -20,16 +22,16 @@ function SelectWorkout({ setIsTrainingOpen, data, type }) {
         </button>
         <p className={S.sw_window__header}>Выберите тренировку</p>
       </div>
-      {data[type].map((el) => (
-        <NavLink
-          to="/workout"
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          <div
-            className={S.items_list}
-            onClick={() => dispatch(setCurrentWorkout(el))}
+      <div className={S.items_list}>
+        {!isLoading && data[type].map((el) => (
+          <NavLink
+            to="/workout"
+            style={{ textDecoration: "none", color: "inherit" }}
           >
-            <div className={S.item}>
+            <div
+              className={S.item}
+              onClick={() => dispatch(setCurrentWorkout(el))}
+            >
               <p className={S.item__header}>{el.title.split("/", 1)}</p>
               {el.title.split("/").length > 1 && (
                 <p className={S.item__text}>
@@ -37,9 +39,9 @@ function SelectWorkout({ setIsTrainingOpen, data, type }) {
                 </p>
               )}
             </div>
-          </div>
-        </NavLink>
-      ))}
+          </NavLink>
+        ))}
+      </div>
     </div>
   );
 }
