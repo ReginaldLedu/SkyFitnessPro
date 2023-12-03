@@ -27,7 +27,7 @@ function NewPwd({ setIsNpwOpen, login }) {
       checkInput();
       setIsNpwOpen(false);
       dispatch(passwordUpdate(newPassword));
-      addUser(login, newPassword )
+      addUser(login, newPassword);
     } catch (error) {
       setInputError(error.message);
     } finally {
