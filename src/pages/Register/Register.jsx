@@ -32,7 +32,7 @@ function Register() {
       setDisabled(true);
       checkInput();
       const safeLogin = safeString(login);
-      const safePassword = safeString(login);
+      const safePassword = safeString(password);
       const checkUser = await getUser(safeLogin);
 
       if (checkUser)
