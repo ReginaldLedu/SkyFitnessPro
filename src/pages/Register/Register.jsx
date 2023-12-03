@@ -9,12 +9,16 @@ import S from "./Register.module.css";
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [disabled, setDisabled] = useState(false);
   const [errorLog, setError] = useState(null);
+
+  const registerButtonClass = () => {
+    if (!disabled) return S.register__button;
+    return S.register__button_loading;
+  };
 
   const checkInput = () => {
     if (!login) throw new Error("Не введен логин");
@@ -64,6 +68,10 @@ function Register() {
     }
   };
 
+  const pressEnterKey = (event) => {
+    if (event.keyCode === 13) registerButton();
+  };
+
   useEffect(() => {
     setError(null);
   }, [login, password, repeatPassword]);
@@ -81,6 +89,7 @@ function Register() {
             placeholder="Логин"
             value={login}
             onChange={(event) => setLogin(event.target.value)}
+            onKeyDown={(event) => pressEnterKey(event)}
           />
           <input
             type="password"
@@ -88,6 +97,7 @@ function Register() {
             placeholder="Пароль"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            onKeyDown={(event) => pressEnterKey(event)}
           />
           <input
             type="password"
@@ -95,15 +105,16 @@ function Register() {
             placeholder="Повторите пароль"
             value={repeatPassword}
             onChange={(event) => setRepeatPassword(event.target.value)}
+            onKeyDown={(event) => pressEnterKey(event)}
           />
           {errorLog && <span className={S.error}>{errorLog}</span>}
           <button
             disabled={disabled}
             type="button"
-            className={S.register__button}
+            className={registerButtonClass()}
             onClick={registerButton}
           >
-            Зарегистрироваться
+            {!disabled ? "Зарегистрироваться" : "...Идет регистрация"}
           </button>
           <button
             disabled={disabled}

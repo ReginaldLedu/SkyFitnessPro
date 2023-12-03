@@ -23,7 +23,6 @@
   align-items: center;
   gap: 1rem;
   flex-direction: row;
-  /* color: black; */
 }
 
 .drop_circle {
@@ -38,26 +37,6 @@
   font-weight: 900;
 }
 
-@keyframes dropping-down {
-  from {
-    height: 0px;
-  }
-
-  to {
-    height: 143px;
-  }
-}
-
-@keyframes dropping-up {
-  from {
-    height: 143px;
-  }
-
-  to {
-    height: 0px;
-  }
-}
-
 .drop_list {
   position: absolute;
   top: 47px;
@@ -69,6 +48,7 @@
   text-align: right;
   overflow: hidden;
   width: 130px;
+  height: 0px;
 }
 
 .drop_list_open {
@@ -98,5 +78,25 @@
 .link_exit {
   &:hover {
     opacity: 50%;
+  }
+}
+
+@keyframes dropping-down {
+  from {
+    height: 0px;
+  }
+
+  to {
+    height: 143px;
+  }
+}
+
+@keyframes dropping-up {
+  from {
+    height: 143px;
+  }
+
+  to {
+    height: 0px;
   }
 }

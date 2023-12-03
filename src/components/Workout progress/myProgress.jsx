@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useDispatch, useSelector } from "react-redux";
 import { backToInitial, setProgress } from "../../store/reducers/mainReducers";
@@ -28,14 +29,12 @@ function MyProgress() {
       (arrForCount[1] / targetProgressFromRedux[exerciseKey]) * 100;
     const key = arrForCount[0];
     const obj = {};
-    // eslint-disable-next-line prefer-destructuring
     obj[key] = `${userProgressPercentage}%`;
     userProgressToRedux(obj);
   }
 
   return (
     <section className={S.myProgress}>
-      {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
       <div className={S.cross} onClick={submitProgressSwitch} />
       <div className={S.myProgress__wrapper}>
         <h1 className={S.myProgress__title}>Мой прогресс</h1>
