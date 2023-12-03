@@ -23,7 +23,6 @@
   align-items: center;
   gap: 1rem;
   flex-direction: row;
-  /* color: black; */
 }
 
 .drop_circle {
@@ -36,26 +35,6 @@
 .drop_arrow {
   font-family: arial;
   font-weight: 900;
-}
-
-@keyframes dropping-down {
-  from {
-    height: 0px;
-  }
-
-  to {
-    height: 143px;
-  }
-}
-
-@keyframes dropping-up {
-  from {
-    height: 143px;
-  }
-
-  to {
-    height: 0px;
-  }
 }
 
 .drop_list {
@@ -99,5 +78,25 @@
 .link_exit {
   &:hover {
     opacity: 50%;
+  }
+}
+
+@keyframes dropping-down {
+  from {
+    height: 0px;
+  }
+
+  to {
+    height: 143px;
+  }
+}
+
+@keyframes dropping-up {
+  from {
+    height: 143px;
+  }
+
+  to {
+    height: 0px;
   }
 }

@@ -15,7 +15,7 @@ function DropArrow() {
 
   const clickToExitButton = () => {
     dispatch(logoutUpdate(false));
-    dispatch(userUpdate())
+    dispatch(userUpdate());
     localStorage.removeItem("user");
     localStorage.removeItem("logout");
     navigate("/");
@@ -39,6 +39,7 @@ function DropArrow() {
       user.login.length > 11 ? `${user.login.slice(0, 11)}…` : user.login;
     return uppString(result);
   };
+  
   const showDropList = () => {
     if (dropList === 0) {
       return S.drop_list;
@@ -48,13 +49,13 @@ function DropArrow() {
     }
     return `${S.drop_list} ${S.drop_list_close}`;
   };
-  
+
   return (
     <div
       className={dropArrowClass()}
       aria-hidden="true"
       tabIndex="-1"
-      onMouseLeave={() => dropList===1 ? setDropList(2):null}
+      onMouseLeave={() => (dropList === 1 ? setDropList(2) : null)}
       onBlur={() => {}}
     >
       <div
@@ -65,30 +66,30 @@ function DropArrow() {
         <div className={S.drop_circle} />
         <div className={S.drop_username}>{showUser()}</div>
         <div className={S.drop_arrow}>{String.fromCodePoint(9013)}</div>
-      </div>      
-        <div className={showDropList()}>
-          <div
-            className={S.link_exit}
-            aria-hidden="true"
-            onClick={clickToExitButton}
-          >
-            Выйти
-          </div>
-          <div
-            className={S.link_profile}
-            aria-hidden="true"
-            onClick={clickToRouteInProfile}
-          >
-            Профиль
-          </div>
-          <div
-            className={S.link_main}
-            aria-hidden="true"
-            onClick={clickToRouteInMain}
-          >
-            На главную
-          </div>
-        </div>      
+      </div>
+      <div className={showDropList()}>
+        <div
+          className={S.link_exit}
+          aria-hidden="true"
+          onClick={clickToExitButton}
+        >
+          Выйти
+        </div>
+        <div
+          className={S.link_profile}
+          aria-hidden="true"
+          onClick={clickToRouteInProfile}
+        >
+          Профиль
+        </div>
+        <div
+          className={S.link_main}
+          aria-hidden="true"
+          onClick={clickToRouteInMain}
+        >
+          На главную
+        </div>
+      </div>
     </div>
   );
 }

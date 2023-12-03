@@ -9,7 +9,6 @@ import S from "./Register.module.css";
 function Register() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -69,9 +68,9 @@ function Register() {
     }
   };
 
-  const pressEnterKey =(event)=>{
-    if(event.keyCode===13) registerButton()
-  }
+  const pressEnterKey = (event) => {
+    if (event.keyCode === 13) registerButton();
+  };
 
   useEffect(() => {
     setError(null);
@@ -90,7 +89,7 @@ function Register() {
             placeholder="Логин"
             value={login}
             onChange={(event) => setLogin(event.target.value)}
-            onKeyDown={(event)=>pressEnterKey(event)}
+            onKeyDown={(event) => pressEnterKey(event)}
           />
           <input
             type="password"
@@ -98,7 +97,7 @@ function Register() {
             placeholder="Пароль"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
-            onKeyDown={(event)=>pressEnterKey(event)}
+            onKeyDown={(event) => pressEnterKey(event)}
           />
           <input
             type="password"
@@ -106,7 +105,7 @@ function Register() {
             placeholder="Повторите пароль"
             value={repeatPassword}
             onChange={(event) => setRepeatPassword(event.target.value)}
-            onKeyDown={(event)=>pressEnterKey(event)}
+            onKeyDown={(event) => pressEnterKey(event)}
           />
           {errorLog && <span className={S.error}>{errorLog}</span>}
           <button

@@ -57,16 +57,6 @@
   width: 100%;
 }
 
-@keyframes loading {
-  from {
-    background-position-x: 0px;
-  }
-
-  to {
-    background-position-x: 500px;
-  }
-}
-
 .login__button,
 .login__button_loading {
   width: 278px;
@@ -83,6 +73,7 @@
   color: white;
   margin-top: 60px;
 }
+
 .login__button_loading {
   background: linear-gradient(110deg, #580ea2 8%, #7d7d7d 18%, #580ea2 33%);
   animation-name: loading;
@@ -113,13 +104,11 @@
 }
 
 .register__button:hover {
-  background: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(#d0cece),
-    to(#d0cece)
-  );
+  background: -webkit-gradient(linear,
+      left bottom,
+      left top,
+      from(#d0cece),
+      to(#d0cece));
   background: linear-gradient(0deg, #d0cece, #d0cece);
 }
 
@@ -136,4 +125,14 @@
   font-size: 16px;
   text-align: center;
   width: 278px;
+}
+
+@keyframes loading {
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: 500px;
+  }
 }
