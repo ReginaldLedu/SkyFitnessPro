@@ -113,3 +113,21 @@ export function addCoursesBody_flex({ login, body_flex }) {
     },
   });
 }
+
+export function deleteUser(login) {
+  return axios({
+    method: "delete",
+    url: `${url}/allUsers/${login}.json`,
+  });
+}
+
+export function addUpdateUser(login, password, courses) {
+  return axios({
+    method: "patch",
+    url: `${url}/allUsers/${login}.json`,
+    data: {
+      password,
+      courses,
+    },
+  });
+}

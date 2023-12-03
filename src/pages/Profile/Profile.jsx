@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import SelectWorkout from "../../components/SelectWorkout/SelectWorkout";
@@ -6,25 +6,21 @@ import userSelector from "../../store/selectors/selectors";
 import DropArrow from "../../components/DropArrow/DropArrow";
 import NewLogin from "../../components/NewLogin/NewLogin";
 import NewPwd from "../../components/NewPwd/NewPwd";
-// import { useGetWorkoutsQuery } from "../../api/api";
 import logo from "../../img/logo__black.png";
 import S from "./Profile.module.css";
-import { getUser } from "../../api/api";
 
 function Profile() {
   const [isNpwOpen, setIsNpwOpen] = useState(false);
   const [isNlogOpen, setIsNlogOpen] = useState(false);
   const [isTrainingOpen, setIsTrainingOpen] = useState(false);
   const [trainingType, setTrainingType] = useState(null);
-  const [courses, setCourses] = useState([]);
   const userData = useSelector(userSelector);
-  useEffect(() => {
-    getUser(userData.login).then((res) => {
-      setCourses(res.courses);
-    });
-  }, []);
+
   return (
     <div className={S.profile_page}>
+      {!isNpwOpen ? " " : <div className={S.cover} />}
+      {!isNlogOpen ? " " : <div className={S.cover} />}
+      {!isTrainingOpen ? " " : <div className={S.cover} />}
       <header className={S.header}>
         <Link to="/" className={S.header_logo}>
           <img className={S.header_logo} src={logo} alt="logo" />
@@ -74,7 +70,7 @@ function Profile() {
         <div className={S.mycourses_block}>
           <p className={S.mycourses_block__header}>Мой профиль</p>
           <div className={S.mycourses__items}>
-            {courses.yoga && (
+            {userData.courses.yoga && (
               <div className={S.mycourses__item_yoga}>
                 <p className={S.item_text}>Йога</p>
                 <button
@@ -91,7 +87,7 @@ function Profile() {
                 </button>
               </div>
             )}
-            {courses.stretching && (
+            {userData.courses.stretching && (
               <div className={S.mycourses__item_strech}>
                 <p className={S.item_text}>Стретчинг</p>
                 <button
@@ -108,7 +104,7 @@ function Profile() {
                 </button>
               </div>
             )}
-            {courses.body_flex && (
+            {userData.courses.body_flex && (
               <div className={S.mycourses__item_bflex}>
                 <p className={S.item_text}>Бодифлекс</p>
                 <button
@@ -126,7 +122,7 @@ function Profile() {
               </div>
             )}
 
-            {courses.step_aerobics && (
+            {userData.courses.step_aerobics && (
               <div className={S.mycourses__item_step}>
                 <p className={S.item_text}>Степ-аэробика</p>
                 <button
@@ -143,7 +139,7 @@ function Profile() {
                 </button>
               </div>
             )}
-            {courses.dance_fitness && (
+            {userData.courses.dance_fitness && (
               <div className={S.mycourses__item_dance}>
                 <p className={S.item_text}>Танцевальный фитнес</p>
                 <button

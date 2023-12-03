@@ -1,9 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { passwordUpdate } from "../../store/reducers/mainReducers";
+import { safeString } from "../Helper/Helper";
+import { addUser } from "../../api/api";
+import userSelector from "../../store/selectors/selectors";
 import logo from "../../img/logo__black.png";
 import S from "./NewPwd.module.css";
-import { addUser } from "../../api/api";
 
 function NewPwd({ setIsNpwOpen, login }) {
   const dispatch = useDispatch();
@@ -11,6 +13,7 @@ function NewPwd({ setIsNpwOpen, login }) {
   const [newPassword, setNewPassword] = useState("");
   const [repeatNewPassword, setRepeatNewPassword] = useState("");
   const [inputError, setInputError] = useState(null);
+  const user = useSelector(userSelector);
 
   const checkInput = () => {
     if (!newPassword) throw new Error("Не введен пароль!");
@@ -21,13 +24,21 @@ function NewPwd({ setIsNpwOpen, login }) {
       throw new Error("Пароль не совпадает");
   };
 
-  const saveButton = () => {
+  const saveButton = async () => {
     try {
       setDisabled(true);
       checkInput();
       setIsNpwOpen(false);
-      dispatch(passwordUpdate(newPassword));
-      addUser(login, newPassword);
+      dispatch(passwordUpdate(safeString(newPassword)));
+      await addUser(login, safeString(newPassword));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          login,
+          password: safeString(newPassword),
+          courses: user?.courses || {},
+        }),
+      );
     } catch (error) {
       setInputError(error.message);
     } finally {

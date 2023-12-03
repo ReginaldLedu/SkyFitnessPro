@@ -1,7 +1,9 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { addUpdateUser, deleteUser, getUser } from "../../api/api";
 import { loginUpdate } from "../../store/reducers/mainReducers";
 import { safeString } from "../Helper/Helper";
+import userSelector from "../../store/selectors/selectors";
 import logo from "../../img/logo__black.png";
 import S from "./NewLogin.module.css";
 
@@ -10,18 +12,36 @@ function NewLogin({ setIsNlogOpen }) {
   const [disabled, setDisabled] = useState(false);
   const [newLogin, setNewLogin] = useState("");
   const [inputError, setInputError] = useState(null);
+  const user = useSelector(userSelector);
+
   const checkInput = () => {
     if (!newLogin) throw new Error("Поле логин не должно быть пустыми!");
     if (newLogin.length < 5)
       throw new Error("Логин должен быть минимум из 5 символов");
   };
 
-  const saveButton = () => {
+  const saveButton = async () => {
     try {
       setDisabled(true);
       checkInput();
-      setIsNlogOpen(false);
+
+      const checkUser = await getUser(safeString(newLogin));
+
+      if (checkUser)
+        throw new Error("Пользователь с таким логином уже существует");
+
+      await deleteUser(user.login);
+      await addUpdateUser(safeString(newLogin), user.password, user.courses);
       dispatch(loginUpdate(safeString(newLogin)));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          login: safeString(newLogin),
+          password: user.password,
+          courses: user?.courses || {},
+        }),
+      );
+      setIsNlogOpen(false);
     } catch (error) {
       setInputError(error.message);
     } finally {
