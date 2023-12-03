@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import { passwordUpdate } from "../../store/reducers/mainReducers";
 import logo from "../../img/logo__black.png";
 import S from "./NewPwd.module.css";
+import { addUser } from "../../api/api";
 
-function NewPwd({ setIsNpwOpen }) {
+function NewPwd({ setIsNpwOpen, login }) {
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(false);
   const [newPassword, setNewPassword] = useState("");
@@ -26,6 +27,7 @@ function NewPwd({ setIsNpwOpen }) {
       checkInput();
       setIsNpwOpen(false);
       dispatch(passwordUpdate(newPassword));
+      addUser(login, newPassword )
     } catch (error) {
       setInputError(error.message);
     } finally {
