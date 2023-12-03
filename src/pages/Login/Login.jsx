@@ -19,6 +19,11 @@ function Login() {
     if (!password) throw new Error("Не введен пароль");
   };
 
+  const loginButtonClass = () => {
+    if (!disabled) return S.login__button;
+    return S.login__button_loading;
+  };
+
   const clickToLoginInApp = async () => {
     try {
       setDisabled(true);
@@ -54,12 +59,18 @@ function Login() {
     }
   };
 
+  const pressEnterKey =(event)=>{
+    if(event.keyCode===13) clickToLoginInApp()
+  }
+
   useEffect(() => {
     setError(null);
   }, [login, password]);
 
   return (
-    <div className={S.body__login}>
+    <div
+      className={S.body__login}      
+    >
       <section className={S.login__screen}>
         <div className={S.login__wrapper}>
           <NavLink to="/">
@@ -71,6 +82,7 @@ function Login() {
             placeholder="Логин"
             value={login}
             onChange={(event) => setLogin(event.target.value)}
+            onKeyDown={(event)=>pressEnterKey(event)}
           />
           <input
             type="password"
@@ -78,15 +90,16 @@ function Login() {
             placeholder="Пароль"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            onKeyDown={(event)=>pressEnterKey(event)}
           />
           {errorLog && <div className={S.error}>{errorLog}</div>}
           <button
             disabled={disabled}
             type="button"
-            className={S.login__button}
+            className={loginButtonClass()}
             onClick={clickToLoginInApp}
           >
-            Войти
+            {!disabled ? "Войти" : "...Входим"}
           </button>
           <NavLink to="/register">
             <button type="button" className={S.register__button}>

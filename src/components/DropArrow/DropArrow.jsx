@@ -11,7 +11,7 @@ function DropArrow() {
   const navigate = useNavigate();
   const location = useLocation().pathname;
   const user = useSelector(userSelector);
-  const [dropList, setDropList] = useState(false);
+  const [dropList, setDropList] = useState(0);
 
   const clickToExitButton = () => {
     dispatch(logoutUpdate(false));
@@ -39,26 +39,34 @@ function DropArrow() {
       user.login.length > 11 ? `${user.login.slice(0, 11)}…` : user.login;
     return uppString(result);
   };
-
+  const showDropList = () => {
+    if (dropList === 0) {
+      return S.drop_list;
+    }
+    if (dropList === 1) {
+      return `${S.drop_list} ${S.drop_list_open}`;
+    }
+    return `${S.drop_list} ${S.drop_list_close}`;
+  };
+  
   return (
     <div
       className={dropArrowClass()}
       aria-hidden="true"
       tabIndex="-1"
-      onMouseLeave={() => setDropList(false)}
+      onMouseLeave={() => dropList===1 ? setDropList(2):null}
       onBlur={() => {}}
     >
       <div
         className={S.drop_title}
         aria-hidden="true"
-        onClick={() => setDropList((prev) => !prev)}
+        onClick={() => (dropList === 1 ? setDropList(2) : setDropList(1))}
       >
         <div className={S.drop_circle} />
         <div className={S.drop_username}>{showUser()}</div>
         <div className={S.drop_arrow}>{String.fromCodePoint(9013)}</div>
-      </div>
-      {dropList ? (
-        <div className={`${S.drop_list} ${S.drop_list_open}`}>
+      </div>      
+        <div className={showDropList()}>
           <div
             className={S.link_exit}
             aria-hidden="true"
@@ -80,10 +88,7 @@ function DropArrow() {
           >
             На главную
           </div>
-        </div>
-      ) : (
-        ""
-      )}
+        </div>      
     </div>
   );
 }
