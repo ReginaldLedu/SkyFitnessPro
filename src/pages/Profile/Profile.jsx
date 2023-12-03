@@ -19,7 +19,9 @@ function Profile() {
   const [courses, setCourses] = useState([]);
   const userData = useSelector(userSelector);
   useEffect(() => {
-    getUser(userData.login).then((res) => setCourses(res.courses))
+    getUser(userData.login).then((res) => {
+      setCourses(res.courses);
+    });
   }, []);
   return (
     <div className={S.profile_page}>
@@ -36,7 +38,9 @@ function Profile() {
             type={trainingType}
           />
         )}
-        {isNpwOpen && <NewPwd setIsNpwOpen={setIsNpwOpen} login={userData.login}/>}
+        {isNpwOpen && (
+          <NewPwd setIsNpwOpen={setIsNpwOpen} login={userData.login} />
+        )}
         {isNlogOpen && <NewLogin setIsNlogOpen={setIsNlogOpen} />}
       </header>
       <div className={S.profile_block}>
