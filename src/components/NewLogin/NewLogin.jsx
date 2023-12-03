@@ -10,7 +10,6 @@ function NewLogin({ setIsNlogOpen }) {
   const [disabled, setDisabled] = useState(false);
   const [newLogin, setNewLogin] = useState("");
   const [inputError, setInputError] = useState(null);
-
   const checkInput = () => {
     if (!newLogin) throw new Error("Поле логин не должно быть пустыми!");
     if (newLogin.length < 5)
