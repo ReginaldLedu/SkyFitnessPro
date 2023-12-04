@@ -2,12 +2,24 @@
   width: 100vw;
   height: 100%;
   position: fixed;
-
   top: 0;
   left: 0;
   z-index: 10;
   background-color: #908d8d;
   opacity: 0.7;
+}
+
+.progress_cover {
+  background-image: url(../../img/description/progerss.svg);
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background-color: #908d8d;
+  opacity: 0.4;
 }
 
 .header__logo {
@@ -136,7 +148,6 @@
 
 .workout-authorized__progress {
   width: 638px;
-  height: 336px;
   background: #f2f2f2;
   border-radius: 30px;
   display: -webkit-box;
@@ -314,7 +325,8 @@
 
 .workout-authorized__progress {
   width: 638px;
-  height: 336px;
+  padding: 20px;
+
   background: #f2f2f2;
   border-radius: 30px;
   display: -webkit-box;
@@ -341,6 +353,7 @@
 }
 
 .progress__text {
+  width: 50%;
   font-size: 24px;
   font-weight: 400;
   line-height: 32px;
@@ -363,4 +376,27 @@
   height: 36px;
   border-radius: 22px;
   border: 2px solid #565eef;
+  box-sizing: border-box;
+}
+.progress__scale_inner {
+  height: 100%;
+  width: 0;
+  border-radius: 22px;
+  background-color: #f2f2f2;
+  color: white;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  letter-spacing: 0em;
+  padding-left: 10%;
+  box-sizing: border-box;
+}
+
+.cross {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px;
+  background-image: url(../../img/exit.svg);
+  background-color: white;
 }

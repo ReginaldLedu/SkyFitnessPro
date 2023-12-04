@@ -1,33 +1,65 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useDispatch } from "react-redux";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 import { passwordUpdate } from "../../store/reducers/mainReducers";
-import S from "./NewPwd.module.css";
+import { safeString } from "../Helper/Helper";
+import { addUser } from "../../api/api";
+import userSelector from "../../store/selectors/selectors";
 import logo from "../../img/logo__black.png";
-import cross from "../../img/profile/cross.svg";
+import S from "./NewPwd.module.css";
 
-function NewPwd({ setIsNpwOpen }) {
+function NewPwd({ setIsNpwOpen, login }) {
   const dispatch = useDispatch();
+  const [disabled, setDisabled] = useState(false);
   const [newPassword, setNewPassword] = useState("");
   const [repeatNewPassword, setRepeatNewPassword] = useState("");
-  const saveButton = () => {
-    if (newPassword === repeatNewPassword && newPassword.length > 0) {
+  const [inputError, setInputError] = useState(null);
+  const user = useSelector(userSelector);
+
+  const checkInput = () => {
+    if (!newPassword) throw new Error("Не введен пароль!");
+    if (!repeatNewPassword) throw new Error("Не введен повторный пароль");
+    if (newPassword.length < 5)
+      throw new Error("Пароль должен быть минимум из 5 символов");
+    if (newPassword !== repeatNewPassword)
+      throw new Error("Пароль не совпадает");
+  };
+
+  const saveButton = async () => {
+    try {
+      setDisabled(true);
+      checkInput();
       setIsNpwOpen(false);
-      dispatch(passwordUpdate(newPassword));
-    } else {
-      alert("Поле пароль не должно быть пустым! Пароли должны совпадать!");
+      dispatch(passwordUpdate(safeString(newPassword)));
+      await addUser(login, safeString(newPassword));
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          login,
+          password: safeString(newPassword),
+          courses: user?.courses || {},
+        }),
+      );
+    } catch (error) {
+      setInputError(error.message);
+    } finally {
+      setDisabled(false);
     }
   };
+
+  useEffect(() => {
+    setInputError(null);
+  }, [newPassword]);
+
   return (
     <div className={S.newpwd_window}>
       <div className={S.newpwd_header}>
-        <img
-          className={S.cross}
-          src={cross}
-          alt="logo"
+        <button
           onClick={() => setIsNpwOpen(false)}
-        />
+          type="button"
+          className={S.cross}
+        >
+          {}
+        </button>
         <img className={S.newpwd_logo} src={logo} alt="logo" />
       </div>
       <form action="" className={S.newpwd_form}>
@@ -48,7 +80,9 @@ function NewPwd({ setIsNpwOpen }) {
             setRepeatNewPassword(event.target.value);
           }}
         />
+        {inputError && <div className={S.error}>{inputError}</div>}
         <button
+          disabled={disabled}
           type="button"
           className={S.form_button}
           onClick={() => saveButton()}

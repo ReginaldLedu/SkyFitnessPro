@@ -1,14 +1,50 @@
-import { useSelector } from "react-redux";
+/* eslint-disable import/no-duplicates */
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import DropArrow from "../../components/DropArrow/DropArrow";
+import { workoutSelector } from "../../store/selectors/selectors";
+import {
+  setExerciseTitles,
+  setInitialCurrentWorkoutProgress,
+  setInitialProgress,
+  setTargetProgress,
+} from "../../store/reducers/mainReducers";
+import WorkoutExerciseScales from "../../components/WorkoutExerciseScales/WorkoutExerciseScales";
 import WorkoutExercises from "../../components/WorkoutExercises/WorkoutExercises";
 import MyProgress from "../../components/Workout progress/myProgress";
+import DropArrow from "../../components/DropArrow/DropArrow";
 import S from "./Workout.module.css";
 
 function Workout() {
+  const dispatch = useDispatch();
+  const workout = useSelector(workoutSelector);
   const completeProgressSwitcher = useSelector(
     (state) => state.rootReducer.mainState.initialState,
   );
+
+  function exerciseTitlesToReducer(array) {
+    dispatch(setExerciseTitles(array));
+  }
+
+  function targetProgressToReducer(object) {
+    dispatch(setTargetProgress(object));
+  }
+
+  useEffect(() => {
+    dispatch(setInitialProgress());
+    dispatch(setInitialCurrentWorkoutProgress());
+    const arr = workout.exercises.map((item) => item.split("(", 2));
+    const arr2 = arr.map((item) => item[1].split(" ", 1));
+    const targetProgressQuantity = arr2.map((item) => parseInt(item[0], 10));
+    const exerciseTitles = workout.exercises.map((item) => item.split("(", 1));
+    exerciseTitlesToReducer(
+      workout.exercises.map((item) => item.split("(", 1)),
+    );
+    for (let i = 0; i < exerciseTitles.length; i += 1) {
+      exerciseTitles[i].push(targetProgressQuantity[i]);
+    }
+    targetProgressToReducer(Object.fromEntries(exerciseTitles));
+  }, []);
 
   return (
     <>
@@ -19,15 +55,13 @@ function Workout() {
         </div>
       </header>
       <main className={S.workout__auth}>
-        <h1 className={S["workout-authorized__title"]}>Йога</h1>
-        <h2 className={S["workout-authorized__path"]}>
-          Красота и здоровье / Йога на каждый день / 2 день
-        </h2>
+        <h1 className={S["workout-authorized__title"]}>{workout.name}</h1>
+        <h2 className={S["workout-authorized__path"]}>{workout.title}</h2>
         <div className={S["workout-authorized__video"]}>
           <iframe
             width="1160"
             height="639"
-            src="https://www.youtube.com/embed/WxFz-4YsiEE?si=QU82bMEoBf2TGEN-"
+            src={`https://www.youtube.com/embed/${workout.link}`}
             title="video"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -38,30 +72,7 @@ function Workout() {
         {completeProgressSwitcher === false ? " " : <MyProgress />}
         <section className={S["workout-authorized__info"]}>
           <WorkoutExercises />
-          <div className={S["workout-authorized__progress"]}>
-            <div className={S.progress__wrapper}>
-              <h3 className={S.progress__title}>
-                Мой прогресс по тренировке 2:
-              </h3>
-              <div className={S.progress__item}>
-                <p className={S.progress__text}>Наклоны вперед</p>
-                <div className={S.progress__scale}>
-                  <div className={S.progress__scale_inner} />
-                </div>
-              </div>
-              <div className={S.progress__item}>
-                <p className={S.progress__text}>Наклоны назад</p>
-                <div className={S.progress__scale} />
-              </div>
-              <div className={S.progress__item}>
-                <p className={S.progress__text}>
-                  Поднятие ног, <br />
-                  согнутых в коленях
-                </p>
-                <div className={S.progress__scale} />
-              </div>
-            </div>
-          </div>
+          <WorkoutExerciseScales />
         </section>
       </main>
     </>
