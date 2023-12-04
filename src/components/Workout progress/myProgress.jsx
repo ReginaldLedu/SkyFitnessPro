@@ -11,28 +11,30 @@ import {
   setCurrentWorkoutProgress,
   setProgressArrayForRender,
 } from "../../store/reducers/mainReducers";
-import { workoutSelector } from "../../store/selectors/selectors";
-import S from "./myProgress.module.css";
+import userSelector, { workoutSelector } from "../../store/selectors/selectors";
 import { addProgress } from "../../api/api";
+import S from "./myProgress.module.css";
 
 function MyProgress() {
   const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
-  const showModal = () => {
-    setModalOpen(true);
-    console.log(modalOpen);
-  };
-  const submitProgressSwitch = () => {
-    dispatch(backToInitial());
-  };
-  const workout = useSelector(workoutSelector);
-
+  const user = useSelector(userSelector);
   const targetProgressFromRedux = useSelector(
     (state) => state.rootReducer.mainState.currentWorkout.targetProgress,
   );
   const userCurrentWorkoutProgress = useSelector(
     (state) => state.rootReducer.mainState.currentWorkoutProgress,
   );
+
+  const showModal = () => {
+    setModalOpen(true);
+  };
+
+  const submitProgressSwitch = () => {
+    dispatch(backToInitial());
+  };
+
+  const workout = useSelector(workoutSelector);
 
   function userProgressToRedux(obj) {
     dispatch(setProgress(obj));
@@ -106,6 +108,7 @@ function MyProgress() {
           return "yoga";
       }
     }
+
     function getDay(day) {
       switch (day) {
         case "Утренняя практика / Йога на каждый день / 1 день / Алексей Казубский":
@@ -138,8 +141,9 @@ function MyProgress() {
     const day = getDay(workout.title);
     userProgressToRedux(obj);
     // setArrayForRender(progressArrayFromObject(obj));
-    addProgress("admin", obj, title, day);
+    addProgress(user.login, obj, title, day);
   }
+
   function onKeyPress(event) {
     // eslint-disable-next-line eqeqeq
     if (

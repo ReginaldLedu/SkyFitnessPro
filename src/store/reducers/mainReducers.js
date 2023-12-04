@@ -66,7 +66,6 @@ const mainReducers = createSlice({
     hideModal: (state) => {
       state.initialModal = false;
     },
-
     userUpdate: (state, action) => {
       state.user = action.payload;
     },
