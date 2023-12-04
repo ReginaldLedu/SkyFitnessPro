@@ -2,11 +2,15 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   submitProgress,
   backToInitial,
+  removeProgressArrayForRender,
 } from "../../store/reducers/mainReducers";
 import S from "../../pages/Workout/Workout.module.css";
 
 function WorkoutExercises() {
   const dispatch = useDispatch();
+  const removeProgress = () => {
+    dispatch(removeProgressArrayForRender());
+  };
   const completeProgressSwitcher = useSelector(
     (state) => state.rootReducer.mainState.initialState,
   );
@@ -31,7 +35,10 @@ function WorkoutExercises() {
         ))}
       </ul>
       <button
-        onClick={writeMyProgress}
+        onClick={() => {
+          writeMyProgress();
+          removeProgress();
+        }}
         type="button"
         className={S["workout-authorized__check"]}
       >

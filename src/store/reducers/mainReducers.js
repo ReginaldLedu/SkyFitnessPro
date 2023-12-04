@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   initialState: false,
+  initialModal: false,
   logout: false,
   course: {
     name: "Йога",
@@ -22,6 +23,8 @@ const initialState = {
     description:
       "Йога - это философия здорового образа жизни. Тот, кто занимается йогой, становится здоровее и выносливее, после занятий чувствует прилив сил, а также с новой силой может ощутить вкус к жизни. Благодаря комплексному воздействию упражнений происходит проработка всех групп мышц, тренировка суставов, улучшается циркуляция крови. Кроме того, упражнения дарят отличное настроение, заряжают бодростью и помогают противостоять стрессам.",
   },
+  progressForRender: [],
+  currentWorkoutProgress: [],
   currentWorkout: {
     exercises: [
       "Правильное дыхание (20 повторений)",
@@ -57,6 +60,13 @@ const mainReducers = createSlice({
     backToInitial: (state) => {
       state.initialState = false;
     },
+    setModal: (state) => {
+      state.initialModal = true;
+    },
+    hideModal: (state) => {
+      state.initialModal = false;
+    },
+
     userUpdate: (state, action) => {
       state.user = action.payload;
     },
@@ -85,15 +95,30 @@ const mainReducers = createSlice({
       state.currentWorkout.targetProgress = action.payload;
     },
     setProgress: (state, action) => {
-      state.userProgress.push(action.payload);
+      state.userProgress = action.payload;
+    },
+
+    setCurrentWorkoutProgress: (state, action) => {
+      state.currentWorkoutProgress.push(action.payload);
+    },
+    setInitialCurrentWorkoutProgress: (state) => {
+      state.currentWorkoutProgress = [];
     },
     setInitialProgress: (state) => {
-      state.userProgress = [];
+      state.userProgress = {};
+    },
+    setProgressArrayForRender: (state, action) => {
+      state.progressForRender.push(action.payload);
+    },
+    removeProgressArrayForRender: (state) => {
+      state.progressForRender = [];
     },
   },
 });
 
 export const {
+  setModal,
+  hideModal,
   submitProgress,
   backToInitial,
   userUpdate,
@@ -108,5 +133,9 @@ export const {
   setUserProgress,
   setProgress,
   setInitialProgress,
+  setCurrentWorkoutProgress,
+  setInitialCurrentWorkoutProgress,
+  setProgressArrayForRender,
+  removeProgressArrayForRender,
 } = mainReducers.actions;
 export default mainReducers;
