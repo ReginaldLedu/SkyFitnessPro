@@ -14,10 +14,9 @@ export default function WorkoutExerciseScales() {
     (state) => state.rootReducer.mainState.progressForRender,
   );
 
- /* const userProgress = useSelector(
+  /* const userProgress = useSelector(
     (state) => state.rootReducer.mainState.userProgress,
   ); */
- 
 
   const workout = useSelector(workoutSelector);
   const colors = [
