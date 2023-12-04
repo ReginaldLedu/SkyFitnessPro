@@ -1,6 +1,6 @@
 /* eslint-disable import/no-duplicates */
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { workoutSelector } from "../../store/selectors/selectors";
 import {
@@ -13,9 +13,11 @@ import WorkoutExerciseScales from "../../components/WorkoutExerciseScales/Workou
 import WorkoutExercises from "../../components/WorkoutExercises/WorkoutExercises";
 import MyProgress from "../../components/Workout progress/myProgress";
 import DropArrow from "../../components/DropArrow/DropArrow";
+
 import S from "./Workout.module.css";
 
 function Workout() {
+
   const dispatch = useDispatch();
   const workout = useSelector(workoutSelector);
   const completeProgressSwitcher = useSelector(
@@ -70,6 +72,7 @@ function Workout() {
         </div>
         {completeProgressSwitcher === false ? " " : <div className={S.cover} />}
         {completeProgressSwitcher === false ? " " : <MyProgress />}
+		  
         <section className={S["workout-authorized__info"]}>
           <WorkoutExercises />
           <WorkoutExerciseScales />

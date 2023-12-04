@@ -16,12 +16,13 @@ import S from "./myProgress.module.css";
 import { addProgress } from "../../api/api";
 
 function MyProgress() {
-  const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState(false);
   const showModal = () => {
     setModalOpen(true);
     console.log(modalOpen);
   };
+  const dispatch = useDispatch();
+
   const submitProgressSwitch = () => {
     dispatch(backToInitial());
   };
@@ -170,7 +171,6 @@ function MyProgress() {
 
   return (
     <section className={S.myProgress}>
-      {modalOpen === "false" ? <Modal /> : " "}
       <div className={S.cross} onClick={submitProgressSwitch} />
       <div className={S.myProgress__wrapper}>
         <h1 className={S.myProgress__title}>Мой прогресс</h1>
@@ -189,12 +189,16 @@ function MyProgress() {
             />
           </div>
         ))}
-
+        {modalOpen === "false" ? (
+          <Modal modalOpen={modalOpen} showModal={showModal} />
+        ) : (
+          " "
+        )}
         <button
           type="button"
           className={S.myProgress__submit}
           onClick={() => {
-            showModal();
+            // showModal();
             userProgressUpdate(userCurrentWorkoutProgress);
             submitProgressSwitch();
           }}
