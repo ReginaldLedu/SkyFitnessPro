@@ -73,6 +73,7 @@ function Profile() {
             {userData.courses.yoga && (
               <div className={S.mycourses__item_yoga}>
                 <p className={S.item_text}>Йога</p>
+
                 <button
                   className={S.item_button}
                   type="button"

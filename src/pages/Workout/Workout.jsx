@@ -1,6 +1,6 @@
 /* eslint-disable import/no-duplicates */
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { workoutSelector } from "../../store/selectors/selectors";
 import {
@@ -15,10 +15,15 @@ import MyProgress from "../../components/Workout progress/myProgress";
 import DropArrow from "../../components/DropArrow/DropArrow";
 
 import S from "./Workout.module.css";
+// import Modal from "../../components/Workout_modal/Modal";
 
 function Workout() {
-
   const dispatch = useDispatch();
+
+  /* const showModal = () => {
+    setModalOpen({ ...modalOpen, modalOpen: true });
+  }; */
+
   const workout = useSelector(workoutSelector);
   const completeProgressSwitcher = useSelector(
     (state) => state.rootReducer.mainState.initialState,
@@ -27,30 +32,42 @@ function Workout() {
   function exerciseTitlesToReducer(array) {
     dispatch(setExerciseTitles(array));
   }
+  const userCurrentWorkoutProgress = useSelector(
+    (state) => state.rootReducer.mainState.currentWorkoutProgress,
+  );
+  const progressForRender = useSelector(
+    (state) => state.rootReducer.mainState.progressForRender,
+  );
 
   function targetProgressToReducer(object) {
     dispatch(setTargetProgress(object));
   }
 
   useEffect(() => {
+   
     dispatch(setInitialProgress());
     dispatch(setInitialCurrentWorkoutProgress());
-    const arr = workout.exercises.map((item) => item.split("(", 2));
-    const arr2 = arr.map((item) => item[1].split(" ", 1));
-    const targetProgressQuantity = arr2.map((item) => parseInt(item[0], 10));
-    const exerciseTitles = workout.exercises.map((item) => item.split("(", 1));
-    exerciseTitlesToReducer(
-      workout.exercises.map((item) => item.split("(", 1)),
-    );
-    for (let i = 0; i < exerciseTitles.length; i += 1) {
-      exerciseTitles[i].push(targetProgressQuantity[i]);
+    if (workout.exercises !== undefined) {
+      const arr = workout.exercises.map((item) => item.split("(", 2));
+      const arr2 = arr.map((item) => item[1].split(" ", 1));
+      const targetProgressQuantity = arr2.map((item) => parseInt(item[0], 10));
+      const exerciseTitles = workout.exercises.map((item) =>
+        item.split("(", 1),
+      );
+      exerciseTitlesToReducer(
+        workout.exercises.map((item) => item.split("(", 1)),
+      );
+      for (let i = 0; i < exerciseTitles.length; i += 1) {
+        exerciseTitles[i].push(targetProgressQuantity[i]);
+      }
+      targetProgressToReducer(Object.fromEntries(exerciseTitles));
     }
-    targetProgressToReducer(Object.fromEntries(exerciseTitles));
   }, []);
 
   return (
     <>
       <header>
+        
         <div className={S.header__wrapper}>
           <Link to="/" className={S.header__logo} />
           <DropArrow />
@@ -71,15 +88,32 @@ function Workout() {
           />
         </div>
         {completeProgressSwitcher === false ? " " : <div className={S.cover} />}
-        {completeProgressSwitcher === false ? " " : <MyProgress />}
-		  
-        <section className={S["workout-authorized__info"]}>
-          <WorkoutExercises />
-          <WorkoutExerciseScales />
-        </section>
+        {completeProgressSwitcher === false ? (
+          " "
+        ) : (
+          <MyProgress
+            
+          />
+        )}
+
+        {userCurrentWorkoutProgress !== undefined &&
+        progressForRender !== undefined &&
+        workout.exercises !== undefined ? (
+          <section className={S["workout-authorized__info"]}>
+            {" "}
+            <WorkoutExercises
+              
+            />
+            <WorkoutExerciseScales />
+          </section>
+        ) : (
+          " "
+        )}
       </main>
     </>
   );
 }
+
+
 
 export default Workout;

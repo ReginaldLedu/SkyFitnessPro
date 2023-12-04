@@ -65,6 +65,7 @@ export default function WorkoutExerciseScales() {
     <div className={S["workout-authorized__progress"]}>
       <div className={S.progress__wrapper}>
         <h3 className={S.progress__title}>Мой прогресс по тренировке 2:</h3>
+        {/* eslint-disable-next-line no-nested-ternary */}
         {userCurrentWorkoutProgress.length > 0
           ? progressForRender.map((item) => (
               <>

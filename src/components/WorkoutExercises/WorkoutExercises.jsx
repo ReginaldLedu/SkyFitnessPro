@@ -22,17 +22,21 @@ function WorkoutExercises() {
     if (completeProgressSwitcher === false) {
       dispatch(submitProgress());
     } else {
+		
       dispatch(backToInitial());
     }
   };
 
   return (
+	
     <div className={S["workout-authorized__exercises"]}>
       <h3 className={S["workout-authorized__exercises-title"]}>Упражнения</h3>
       <ul className={S["workout-authorized__list"]}>
-        {currentExercises.map((item) => (
-          <li className={S.exercises__item}>{item}</li>
-        ))}
+        {currentExercises !== undefined
+          ? currentExercises.map((item) => (
+              <li className={S.exercises__item}>{item}</li>
+            ))
+          : " "}
       </ul>
       <button
         onClick={() => {

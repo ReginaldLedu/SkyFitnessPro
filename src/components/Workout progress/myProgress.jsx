@@ -2,8 +2,8 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+
 import Modal from "../Workout_modal/Modal";
 import {
   backToInitial,
@@ -15,8 +15,8 @@ import userSelector, { workoutSelector } from "../../store/selectors/selectors";
 import { addProgress } from "../../api/api";
 import S from "./myProgress.module.css";
 
-function MyProgress() {
-  const [modalOpen, setModalOpen] = useState(false);
+function MyProgress(isActive) {
+  const dispatch = useDispatch();
   const user = useSelector(userSelector);
   const targetProgressFromRedux = useSelector(
     (state) => state.rootReducer.mainState.currentWorkout.targetProgress,
@@ -24,10 +24,6 @@ function MyProgress() {
   const userCurrentWorkoutProgress = useSelector(
     (state) => state.rootReducer.mainState.currentWorkoutProgress,
   );
-
-  const showModal = () => {
-    setModalOpen(true);
-  };
 
   const submitProgressSwitch = () => {
     dispatch(backToInitial());
@@ -170,6 +166,7 @@ function MyProgress() {
       }
     }
   }
+ 
 
   return (
     <section className={S.myProgress}>
@@ -191,18 +188,21 @@ function MyProgress() {
             />
           </div>
         ))}
-        {modalOpen === "false" ? (
-          <Modal modalOpen={modalOpen} showModal={showModal} />
-        ) : (
-          " "
-        )}
+        {isActive === "true" ? <Modal /> : " "}
         <button
           type="button"
           className={S.myProgress__submit}
-          onClick={() => {
-            // showModal();
-            userProgressUpdate(userCurrentWorkoutProgress);
-            submitProgressSwitch();
+          onClick={(event) => {
+            try {
+              event.target.setAttribute("disabled", " ");
+              userProgressUpdate(userCurrentWorkoutProgress);
+            } catch (error) {
+              console.log(error.message);
+            } finally {
+              
+              submitProgressSwitch();
+              event.target.removeAttribute("disabled", " ");
+            }
           }}
         >
           Отправить
@@ -212,3 +212,27 @@ function MyProgress() {
   );
 }
 export default MyProgress;
+/* userProgressUpdate(userCurrentWorkoutProgress);
+            submitProgressSwitch(); */
+
+/* const saveButton = async () => {
+	try {
+	  setDisabled(true);
+	  checkInput();
+	  setIsNpwOpen(false);
+	  dispatch(passwordUpdate(safeString(newPassword)));
+	  await addUser(login, safeString(newPassword));
+	  localStorage.setItem(
+		 "user",
+		 JSON.stringify({
+			login,
+			password: safeString(newPassword),
+			courses: user?.courses || {},
+		 }),
+	  );
+	} catch (error) {
+	  setInputError(error.message);
+	} finally {
+	  setDisabled(false);
+	}
+ }; */
