@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import axios from "axios";
 
@@ -113,3 +114,21 @@ export function addCoursesBody_flex({ login, body_flex }) {
     },
   });
 }
+
+export function addProgress(login, progress, title, day) {
+  return axios({
+    method: "patch",
+    url: `${url}/allUsers/${login}/courses/${title}/${day}.json` /* 3й день йоги */,
+    data: {
+      progress,
+    },
+  });
+}
+
+export function getUserProgress(login) {
+  return axios({
+    method: "get",
+    url: `${url}/allUsers/${login}/courses/yoga/2/progress.json` /* 3й день йоги */,
+  });
+}
+// https://skyfitnesspro-abf64-default-rtdb.europe-west1.firebasedatabase.app/allUsers/admin/courses/yoga/2

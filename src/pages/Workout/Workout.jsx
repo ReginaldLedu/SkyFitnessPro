@@ -1,9 +1,11 @@
+/* eslint-disable import/no-duplicates */
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { workoutSelector } from "../../store/selectors/selectors";
 import {
   setExerciseTitles,
+  setInitialCurrentWorkoutProgress,
   setInitialProgress,
   setTargetProgress,
 } from "../../store/reducers/mainReducers";
@@ -30,19 +32,17 @@ function Workout() {
 
   useEffect(() => {
     dispatch(setInitialProgress());
+    dispatch(setInitialCurrentWorkoutProgress());
     const arr = workout.exercises.map((item) => item.split("(", 2));
     const arr2 = arr.map((item) => item[1].split(" ", 1));
     const targetProgressQuantity = arr2.map((item) => parseInt(item[0], 10));
     const exerciseTitles = workout.exercises.map((item) => item.split("(", 1));
-
     exerciseTitlesToReducer(
       workout.exercises.map((item) => item.split("(", 1)),
     );
-
     for (let i = 0; i < exerciseTitles.length; i += 1) {
       exerciseTitles[i].push(targetProgressQuantity[i]);
     }
-
     targetProgressToReducer(Object.fromEntries(exerciseTitles));
   }, []);
 
