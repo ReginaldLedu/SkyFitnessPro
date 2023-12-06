@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/SkyFitnessPro/static/css/main.fc5694f8.css",
-    "main.js": "/SkyFitnessPro/static/js/main.bbfe4dc6.js",
+    "main.js": "/SkyFitnessPro/static/js/main.9713927f.js",
     "static/media/strech.png": "/SkyFitnessPro/static/media/strech.7e9d33c23a4c347600c9.png",
     "static/media/yoga.png": "/SkyFitnessPro/static/media/yoga.7b6026203215cf9f2cbd.png",
     "static/media/bflex.png": "/SkyFitnessPro/static/media/bflex.82846edd0732f85408e5.png",
@@ -20,10 +20,10 @@
     "static/media/exit.svg": "/SkyFitnessPro/static/media/exit.c52e1dd21ee81b6fed3e.svg",
     "index.html": "/SkyFitnessPro/index.html",
     "main.fc5694f8.css.map": "/SkyFitnessPro/static/css/main.fc5694f8.css.map",
-    "main.bbfe4dc6.js.map": "/SkyFitnessPro/static/js/main.bbfe4dc6.js.map"
+    "main.9713927f.js.map": "/SkyFitnessPro/static/js/main.9713927f.js.map"
   },
   "entrypoints": [
     "static/css/main.fc5694f8.css",
-    "static/js/main.bbfe4dc6.js"
+    "static/js/main.9713927f.js"
   ]
 }
