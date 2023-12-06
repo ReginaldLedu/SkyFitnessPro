@@ -11,13 +11,13 @@ import NotFound from "../../pages/NotFound/NotFound";
 function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/description" element={<Description />} />
+      <Route path="/SkyFitnessPro/" element={<Main />} />
+      <Route path="/SkyFitnessPro/login" element={<Login />} />
+      <Route path="/SkyFitnessPro/register" element={<Register />} />
+      <Route path="/SkyFitnessPro/description" element={<Description />} />
       <Route element={<ProtectedRoute />}>
-        <Route path="/workout" element={<Workout />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/SkyFitnessPro/workout" element={<Workout />} />
+        <Route path="/SkyFitnessPro/profile" element={<Profile />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </Routes>
