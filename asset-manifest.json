@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/SkyFitnessPro/static/css/main.fc5694f8.css",
+    "main.js": "/SkyFitnessPro/static/js/main.bbfe4dc6.js",
+    "static/media/strech.png": "/SkyFitnessPro/static/media/strech.7e9d33c23a4c347600c9.png",
+    "static/media/yoga.png": "/SkyFitnessPro/static/media/yoga.7b6026203215cf9f2cbd.png",
+    "static/media/bflex.png": "/SkyFitnessPro/static/media/bflex.82846edd0732f85408e5.png",
+    "static/media/step.png": "/SkyFitnessPro/static/media/step.de4dd2efae3dee78d166.png",
+    "static/media/dance.png": "/SkyFitnessPro/static/media/dance.d1c9fa587524dd5024c3.png",
+    "static/media/stretch.png": "/SkyFitnessPro/static/media/stretch.056b19ff560b01a0c598.png",
+    "static/media/logo__yoga.jpg": "/SkyFitnessPro/static/media/logo__yoga.f2ee62f1b38234606ba8.jpg",
+    "static/media/StratosLCWeb-Regular.woff": "/SkyFitnessPro/static/media/StratosLCWeb-Regular.03b01a6d0972d3524efe.woff",
+    "static/media/bodyFlex.png": "/SkyFitnessPro/static/media/bodyFlex.dec57331591c5ede54ad.png",
+    "static/media/StratosLCWeb-Regular.woff2": "/SkyFitnessPro/static/media/StratosLCWeb-Regular.c14b0c073901d3014117.woff2",
+    "static/media/sticker.svg": "/SkyFitnessPro/static/media/sticker.70c955e7b5d765dc8d88629b49fd217f.svg",
+    "static/media/phone.png": "/SkyFitnessPro/static/media/phone.fd46540c9ac7b29921b4.png",
+    "static/media/danceFitness.svg": "/SkyFitnessPro/static/media/danceFitness.037e9036dca04275d93aab76438e49ce.svg",
+    "static/media/stepAerobics.svg": "/SkyFitnessPro/static/media/stepAerobics.6900285b4676a27dfd41047ca10a73ca.svg",
+    "static/media/progerss.svg": "/SkyFitnessPro/static/media/progerss.9dab7567537b34041e4b.svg",
+    "static/media/exit.svg": "/SkyFitnessPro/static/media/exit.c52e1dd21ee81b6fed3e.svg",
+    "index.html": "/SkyFitnessPro/index.html",
+    "main.fc5694f8.css.map": "/SkyFitnessPro/static/css/main.fc5694f8.css.map",
+    "main.bbfe4dc6.js.map": "/SkyFitnessPro/static/js/main.bbfe4dc6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fc5694f8.css",
+    "static/js/main.bbfe4dc6.js"
+  ]
+}
