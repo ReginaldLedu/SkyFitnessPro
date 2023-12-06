@@ -18,20 +18,20 @@ function DropArrow() {
     dispatch(userUpdate());
     localStorage.removeItem("user");
     localStorage.removeItem("logout");
-    navigate("/");
+    navigate("/SkyFitnessPro/");
   };
 
   const dropArrowClass = () => {
-    if (location !== "/") return S.drop_container;
+    if (location !== "/SkyFitnessPro/") return S.drop_container;
     return S.drop_container_mainPage;
   };
 
   const clickToRouteInProfile = () => {
-    navigate("/profile");
+    navigate("/SkyFitnessPro/profile");
   };
 
   const clickToRouteInMain = () => {
-    navigate("/");
+    navigate("/SkyFitnessPro/");
   };
 
   const showUser = () => {
@@ -39,7 +39,7 @@ function DropArrow() {
       user.login.length > 11 ? `${user.login.slice(0, 11)}…` : user.login;
     return uppString(result);
   };
-  
+
   const showDropList = () => {
     if (dropList === 0) {
       return S.drop_list;

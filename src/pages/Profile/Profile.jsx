@@ -22,7 +22,7 @@ function Profile() {
       {!isNlogOpen ? " " : <div className={S.cover} />}
       {!isTrainingOpen ? " " : <div className={S.cover} />}
       <header className={S.header}>
-        <Link to="/" className={S.header_logo}>
+        <Link to="/SkyFitnessPro/" className={S.header_logo}>
           <img className={S.header_logo} src={logo} alt="logo" />
         </Link>
         <div className={S.user_block}>

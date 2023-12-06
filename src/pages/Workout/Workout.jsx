@@ -44,7 +44,6 @@ function Workout() {
   }
 
   useEffect(() => {
-   
     dispatch(setInitialProgress());
     dispatch(setInitialCurrentWorkoutProgress());
     if (workout.exercises !== undefined) {
@@ -67,9 +66,8 @@ function Workout() {
   return (
     <>
       <header>
-        
         <div className={S.header__wrapper}>
-          <Link to="/" className={S.header__logo} />
+          <Link to="/SkyFitnessPro/" className={S.header__logo} />
           <DropArrow />
         </div>
       </header>
@@ -88,22 +86,14 @@ function Workout() {
           />
         </div>
         {completeProgressSwitcher === false ? " " : <div className={S.cover} />}
-        {completeProgressSwitcher === false ? (
-          " "
-        ) : (
-          <MyProgress
-            
-          />
-        )}
+        {completeProgressSwitcher === false ? " " : <MyProgress />}
 
         {userCurrentWorkoutProgress !== undefined &&
         progressForRender !== undefined &&
         workout.exercises !== undefined ? (
           <section className={S["workout-authorized__info"]}>
             {" "}
-            <WorkoutExercises
-              
-            />
+            <WorkoutExercises />
             <WorkoutExerciseScales />
           </section>
         ) : (
@@ -113,7 +103,5 @@ function Workout() {
     </>
   );
 }
-
-
 
 export default Workout;

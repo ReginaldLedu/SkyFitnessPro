@@ -47,7 +47,7 @@ function Login() {
         );
         dispatch(logoutUpdate(true));
         localStorage.setItem("logout", JSON.stringify(true));
-        navigate("/profile");
+        navigate("/SkyFitnessPro/profile");
       } else {
         throw new Error("Пароль или логин введены не верно");
       }
@@ -70,7 +70,7 @@ function Login() {
     <div className={S.body__login}>
       <section className={S.login__screen}>
         <div className={S.login__wrapper}>
-          <NavLink to="/">
+          <NavLink to="/SkyFitnessPro/">
             <div className={S.login__logo} />
           </NavLink>
           <input
@@ -98,7 +98,7 @@ function Login() {
           >
             {!disabled ? "Войти" : "...Входим"}
           </button>
-          <NavLink to="/register">
+          <NavLink to="/SkyFitnessPro/register">
             <button type="button" className={S.register__button}>
               Зарегистрироваться
             </button>

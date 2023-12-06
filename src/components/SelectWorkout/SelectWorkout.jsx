@@ -26,7 +26,7 @@ function SelectWorkout({ setIsTrainingOpen, type }) {
         {!isLoading &&
           data[type].map((el) => (
             <NavLink
-              to="/workout"
+              to="/SkyFitnessPro/workout"
               style={{ textDecoration: "none", color: "inherit" }}
             >
               <div

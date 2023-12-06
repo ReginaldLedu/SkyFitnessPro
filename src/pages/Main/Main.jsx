@@ -44,7 +44,7 @@ function Main() {
       default:
         break;
     }
-    navigate("/description");
+    navigate("/SkyFitnessPro/description");
   };
 
   const scroll = () => {
@@ -58,7 +58,7 @@ function Main() {
   return (
     <div className={S.container}>
       <div className={S.top__row}>
-        <Link to="/" className={S.logo__container} />
+        <Link to="/SkyFitnessPro/" className={S.logo__container} />
         {!logout ? <EnterButton /> : <DropArrow />}
         <div className={S.sticker}>
           <img alt="sticker" src={sticker} />

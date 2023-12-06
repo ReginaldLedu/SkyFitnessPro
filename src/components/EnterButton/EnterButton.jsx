@@ -5,7 +5,7 @@ function EnterButton() {
   const navigate = useNavigate();
 
   const clickToRouteInLogin = () => {
-    navigate("/login");
+    navigate("/SkyFitnessPro/login");
   };
 
   return (

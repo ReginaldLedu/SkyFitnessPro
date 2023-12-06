@@ -60,7 +60,7 @@ function Register() {
       );
       dispatch(logoutUpdate(true));
       localStorage.setItem("logout", JSON.stringify(true));
-      navigate("/");
+      navigate("/SkyFitnessPro/");
     } catch (error) {
       setError(error.message);
     } finally {
@@ -120,7 +120,7 @@ function Register() {
             disabled={disabled}
             type="button"
             className={S.login__button}
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/SkyFitnessPro/login")}
           >
             Войти
           </button>
